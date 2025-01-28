@@ -1,0 +1,346 @@
+/* Подключение шрифта */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Merriweather', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Сохраняем вертикальное расположение элементов */
+    justify-content: center; /* Центрируем по вертикали */
+    align-items: center; /* Центрируем по горизонтали */
+    min-height: 100vh; /* Высота экрана */
+    background-color: #729238; /* Зеленый фон */
+    color: #FEFAE0;;
+    padding: 20px; /* Отступы по бокам */
+    text-align: center; /* Выравнивание текста */
+}
+
+/* Шапка сайта */
+header {
+    position: fixed; /* Фиксированное позиционирование */
+    top: 0; /* Верхний отступ */
+    left: 0; /* Левый отступ */
+    width: 100%; /* Ширина на всю страницу */
+    padding: 0 100px; /* Отступы по бокам */
+    height: 100px; /* Высота шапки */
+    background: #FEFAE0; /* Цвет фона */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для шапки */
+    display: flex; /* Используем Flexbox для расположения элементов */
+    justify-content: space-between; /* Разделяем элементы с отступами */
+    align-items: center; /* Центрируем по вертикали */
+    z-index: 99; /* Устанавливаем высокий приоритет отображения */
+}
+
+.logo {
+    display: flex; /* Flexbox для логотипа */
+    align-items: center; /* Центрируем логотип по вертикали */
+    height: 100%; /* Высота логотипа — 100% от родителя */
+}
+
+.logo img {
+    max-height: 140px; /* Максимальная высота изображения */
+    width: auto; /* Пропорциональная ширина */
+}
+
+.navigation {
+    display: flex; /* Flexbox для навигации */
+    align-items: center; /* Центрируем элементы навигации по вертикали */
+}
+
+.navigation a {
+    font-size: 1.2em; /* Размер шрифта */
+    color: #729238; /* Цвет ссылок */
+    text-decoration: none; /* Убираем подчеркивание у ссылок */
+    font-weight: 800; /* Полужирный шрифт */
+    margin-left: 40px; /* Отступ слева между ссылками */
+    position: relative; /* Для псевдоэлементов */
+    white-space: nowrap; /* Запрещаем перенос текста */
+    transition: color 0.3s; /* Плавный переход для изменения цвета */
+}
+
+.navigation a::after {
+    content: ""; /* Псевдоэлемент */
+    position: absolute; /* Абсолютное позиционирование */
+    left: 0; /* Сдвиг влево */
+    bottom: -6px; /* Сдвиг вниз */
+    width: 100%; /* Ширина полоски */
+    height: 3px; /* Высота полоски */
+    background: #CFF64B; /* Цвет полоски */
+    border-radius: 5px; /* Скругленные углы полоски */
+    transform-origin: right; /* Начало трансформации справа */
+    transform: scaleX(0); /* Изначально скрытая полоска */
+    transition: transform 0.3s; /* Плавный переход для анимации полоски */
+}
+
+.navigation a:hover::after {
+    transform-origin: left; /* Меняем начало трансформации на левое при наведении */
+    transform: scaleX(1); /* Полоска появляется */
+}
+
+.navigation .btnLogin-popup {
+    margin-left: 40px; /* Отступ между кнопками */
+    padding: 10px 20px; /* Отступы внутри кнопки */
+    border: 2px solid #729238; /* Цвет и толщина рамки */
+    background: transparent; /* Прозрачный фон */
+    border-radius: 6px; /* Скругленные углы */
+    color: #729238; /* Цвет текста */
+    font-size: 1.1em; /* Размер шрифта */
+    font-weight: 800; /* Полужирный шрифт */
+    cursor: pointer; /* Курсор в виде руки */
+    transition: background 0.3s, color 0.3s; /* Плавные переходы */
+}
+
+.navigation .btnLogin-popup:hover {
+    background: #CFF64B; /* Цвет фона при наведении */
+    color: #FEFAE0; /* Цвет текста при наведении */
+}
+
+/* Центрированное сообщение */
+.center-message {
+    position: absolute; /* Устанавливаем позицию как абсолютную */
+    top: 50%; /* Сдвигаем по вертикали на 50% от высоты экрана */
+    left: 50%; /* Сдвигаем по горизонтали на 50% от ширины экрана */
+    transform: translate(-50%, -50%); /* Сдвигаем на половину размера элемента, чтобы он точно оказался в центре */
+    margin-bottom: 20px; /* Отступ снизу */
+    color: #FEFAE0;
+    font-size: 2em; /* Увеличенный размер шрифта */
+    font-weight: bold;
+    justify-content: center; /* Центрируем по горизонтали */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    max-width: 700px; /* Ограничение ширины для большого экрана */
+}
+
+
+/* Форма поиска */
+.search-form {
+    display: flex; /* Flexbox для формы */
+    justify-content: center; /* Центрируем по горизонтали */
+    align-items: center; /* Центрируем по вертикали */
+    gap: 10px; /* Отступы между элементами */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.search-form input {
+    height: 40px; /* Высота поля ввода */
+    padding: 0 10px; /* Отступы внутри поля */
+    font-weight: 800; /* Полужирный шрифт */
+    font-size: 1em; /* Размер шрифта */
+    border: 2px solid #FEFAE0; /* Граница поля */
+    border-radius: 6px; /* Скругленные углы */
+    outline: none; /* Убираем обводку при фокусе */
+    background: #FEFAE0; /* Цвет фона */
+    color: #729238; /* Цвет текста */
+    transition: border 0.3s; /* Плавный переход для границы */
+}
+
+.search-form input:focus {
+    border-color: #CFF64B; /* Цвет границы при фокусе */
+}
+
+.search-form button {
+    height: 45px; /* Высота кнопки */
+    padding: 0 15px; /* Отступы внутри кнопки */
+    font-size: 1.1em; /* Размер шрифта */
+    color: #729238; /* Цвет текста */
+    background: #FEFAE0; /* Цвет фона */
+    border: 2px solid #FEFAE0; /* Граница кнопки */
+    border-radius: 6px; /* Скругленные углы */
+    cursor: pointer; /* Курсор в виде руки */
+    font-weight: 800; /* Полужирный шрифт */
+    transition: background 0.3s, color 0.3s, border 0.3s; /* Плавные переходы */
+}
+
+.search-form button:hover {
+    background: #CFF64B; /* Цвет фона при наведении */
+    color: #FEFAE0; /* Цвет текста при наведении */
+}
+
+/* Модальные окна (вход и регистрация) */
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: auto; /* Убираем фиксированную высоту для адаптивности */
+    background: transparent;
+    border: 2px solid rgba(255, 225, 225, .5);
+    background-color: #729238;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    flex-direction: column; /* Располагаем содержимое вертикально */
+    justify-content: center; /* Центрируем содержимое по вертикали */
+    align-items: center; /* Центрируем содержимое по горизонтали */
+    overflow: hidden;
+    transform: scale(0); 
+    transition: transform 0.3s ease;
+}
+
+.wrapper.active-popup {
+    transform: scale(1);
+}
+
+.wrapper.active-popup {
+    transform: scale(1);
+}
+
+.wrapper.active{
+    height: 520px;
+}
+
+.wrapper .form-box{
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper .form-box.login{
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+.wrapper.active .form-box.login{
+    transition: none;
+    transform: translateX(-400px);
+}
+
+
+.wrapper .form-box.register{
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+
+}
+
+.wrapper.active .form-box.register{
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+.wrapper .icon-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #FEFAE0;
+    font-size: 2em;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.form-box h2{
+    font-size: 2em;
+    color: #FEFAE0;;
+    text-align: center;
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #FEFAE0;
+    margin: 30px 0;
+}
+
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #FEFAE0;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label{
+    top: -5px;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #FEFAE0;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+
+.input-box .icon{
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: #FEFAE0;
+    line-height: 57px;
+}
+.remember-forgot {
+    display: flex; /* Flexbox для расположения элементов */
+    justify-content: space-between; /* Распределяем по сторонам */
+    align-items: center; /* Центрируем по вертикали */
+    margin: 10px 0; /* Отступы сверху и снизу */
+    font-size: 0.9em; /* Размер шрифта */
+}
+
+.remember-forgot label {
+    color: #FEFAE0; /* Цвет метки */
+}
+
+.remember-forgot a {
+    color: #CFF64B; /* Цвет ссылки */
+    text-decoration: none; /* Без подчеркивания */
+    transition: color 0.3s; /* Плавное изменение цвета */
+}
+
+.remember-forgot a:hover {
+    color: #FEFAE0; /* Цвет ссылки при наведении */
+    text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+.btn {
+    width: 100%; /* Кнопка на всю ширину */
+    padding: 10px; /* Отступы внутри кнопки */
+    border: none; /* Без рамки */
+    background: #FEFAE0; /* Цвет фона */
+    color: #729238; /* Цвет текста */
+    border-radius: 6px; /* Скругленные углы */
+    cursor: pointer; /* Курсор в виде руки */
+    font-size: 1em; /* Размер шрифта */
+    font-weight: 500; /* Полужирный шрифт */
+    transition: background 0.3s, color 0.3s; /* Плавное изменение фона и цвета */
+}
+
+.btn:hover {
+    background: #CFF64B; /* Цвет фона при наведении */
+    color: #FEFAE0; /* Цвет текста при наведении */
+}
+
+.login-register {
+    text-align: center; /* Выравнивание текста по центру */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.login-register a {
+    color: #CFF64B; /* Цвет ссылки */
+    font-weight: 600; /* Жирный шрифт */
+    text-decoration: none; /* Без подчеркивания */
+    transition: color 0.3s; /* Плавный переход цвета */
+}
+
+.login-register a:hover {
+    color: #FEFAE0; /* Цвет при наведении */
+    text-decoration: underline; /* Подчеркивание при наведении */
+}

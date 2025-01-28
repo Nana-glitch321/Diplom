@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PodcasterPro</title>
+    <link rel="stylesheet" href="./css/style_glav.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <h2 class="logo">
+                <img src="./picture/logo.png" alt="Логотип PodcasterPro">
+            </h2>
+        </div>
+        <nav class="header-right navigation" role="navigation" aria-label="Основная навигация">
+            <a href="./index/index_glav.html">Главная</a>
+            <a href="./index/index_theme.html">Темы</a>
+            <a href="./index/index_channel.html">Каналы</a>
+            <a href="./index/index_pop.html">Популярное</a>
+            <button class="btnLogin-popup" aria-haspopup="dialog" aria-expanded="false">Аккаунт</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="center-message">
+            <h1>Слушай мир — найди своё мнение</h1>
+            <form class="search-form" id="searchForm" role="search">
+                <input type="text" id="searchInput" placeholder="Введите слово для поиска" required>
+                <button type="submit" aria-label="Начать поиск">Поиск</button>
+            </form>
+    </section>
+
+    <section class="auth-cection">
+        <div class="wrapper">
+            <span class="icon-close"><ion-icon name="close-outline"></ion-icon></span>
+
+        <!-- Login Form -->
+        <div class="form-box login" aria-labelledby="loginTitle">
+            <h2 id="loginTitle">Вход</h2>
+            <form id="loginForm" autocomplete="on">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+                    <input type="text" id="loginEmail" required>
+                    <label>Эл. почта</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                    <input type="password" id="loginPassword" required>
+                    <label>Пароль</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">Запомнить меня</label>
+                    <a href="#" class="forgotPassword">Забыли пароль?</a>
+                </div>
+                <button type="submit" class="btn">Войти</button>
+                <div class="login-register">
+                    <p>Нет аккаунта? <a href="#" class="register-link">Зарегистрироваться</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-box register">
+            <h2>Регистрация</h2>
+            <form id="registerForm" autocomplete="on">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                    <input type="text" id="registerName" required>
+                    <label>Имя</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+                    <input type="text" id="registerEmail" required>
+                    <label>Эл. почта</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                    <input type="password" id="registerPassword" required>
+                    <label>Пароль</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">Соглашаюсь с правилами сайта</label>
+                </div>
+                <button type="submit" class="btn">Зарегистрироваться</button>
+                <div class="login-register">
+                    <p><a href="#" class="login-link">Уже есть аккаунт?</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="./js/script_glav.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html> 
