@@ -1,1 +1,101 @@
-{\rtf1}
+/* Подключение шрифта */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Merriweather', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Сохраняем вертикальное расположение элементов */
+    justify-content: center; /* Центрируем по вертикали */
+    align-items: center; /* Центрируем по горизонтали */
+    min-height: 100vh; /* Высота экрана */
+    background-color: #729238; /* Зеленый фон */
+    color: #FEFAE0;;
+    padding: 20px; /* Отступы по бокам */
+    text-align: center; /* Выравнивание текста */
+}
+
+/* Шапка сайта */
+header {
+    position: fixed; /* Фиксированное позиционирование */
+    top: 0; /* Верхний отступ */
+    left: 0; /* Левый отступ */
+    width: 100%; /* Ширина на всю страницу */
+    padding: 0 100px; /* Отступы по бокам */
+    height: 100px; /* Высота шапки */
+    background: #FEFAE0; /* Цвет фона */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для шапки */
+    display: flex; /* Используем Flexbox для расположения элементов */
+    justify-content: space-between; /* Разделяем элементы с отступами */
+    align-items: center; /* Центрируем по вертикали */
+    z-index: 99; /* Устанавливаем высокий приоритет отображения */
+}
+
+.logo {
+    display: flex; /* Flexbox для логотипа */
+    align-items: center; /* Центрируем логотип по вертикали */
+    height: 100%; /* Высота логотипа — 100% от родителя */
+}
+
+.logo img {
+    max-height: 140px; /* Максимальная высота изображения */
+    width: auto; /* Пропорциональная ширина */
+}
+
+.navigation {
+    display: flex; /* Flexbox для навигации */
+    align-items: center; /* Центрируем элементы навигации по вертикали */
+}
+
+.navigation a {
+    font-size: 1.2em; /* Размер шрифта */
+    color: #729238; /* Цвет ссылок */
+    text-decoration: none; /* Убираем подчеркивание у ссылок */
+    font-weight: 800; /* Полужирный шрифт */
+    margin-left: 40px; /* Отступ слева между ссылками */
+    position: relative; /* Для псевдоэлементов */
+    white-space: nowrap; /* Запрещаем перенос текста */
+    transition: color 0.3s; /* Плавный переход для изменения цвета */
+}
+
+.navigation a::after {
+    content: ""; /* Псевдоэлемент */
+    position: absolute; /* Абсолютное позиционирование */
+    left: 0; /* Сдвиг влево */
+    bottom: -6px; /* Сдвиг вниз */
+    width: 100%; /* Ширина полоски */
+    height: 3px; /* Высота полоски */
+    background: #CFF64B; /* Цвет полоски */
+    border-radius: 5px; /* Скругленные углы полоски */
+    transform-origin: right; /* Начало трансформации справа */
+    transform: scaleX(0); /* Изначально скрытая полоска */
+    transition: transform 0.3s; /* Плавный переход для анимации полоски */
+}
+
+.navigation a:hover::after {
+    transform-origin: left; /* Меняем начало трансформации на левое при наведении */
+    transform: scaleX(1); /* Полоска появляется */
+}
+
+.navigation .btnLogin-popup {
+    margin-left: 40px; /* Отступ между кнопками */
+    padding: 10px 20px; /* Отступы внутри кнопки */
+    border: 2px solid #729238; /* Цвет и толщина рамки */
+    background: transparent; /* Прозрачный фон */
+    border-radius: 6px; /* Скругленные углы */
+    color: #729238; /* Цвет текста */
+    font-size: 1.1em; /* Размер шрифта */
+    font-weight: 800; /* Полужирный шрифт */
+    cursor: pointer; /* Курсор в виде руки */
+    transition: background 0.3s, color 0.3s; /* Плавные переходы */
+}
+
+.navigation .btnLogin-popup:hover {
+    background: #CFF64B; /* Цвет фона при наведении */
+    color: #FEFAE0; /* Цвет текста при наведении */
+}
