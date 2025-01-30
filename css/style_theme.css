@@ -97,6 +97,7 @@ header {
 
 .card-container {
     display: flex;
+    flex-wrap: wrap; /* Разрешаем перенос карточек на новую строку */
     justify-content: center; /* Центрируем карточки по горизонтали */
     gap: 90px; /* Отступ между карточками */
     margin-top: 120px; /* Отступ сверху для шапки */
