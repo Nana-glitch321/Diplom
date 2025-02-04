@@ -1,11 +1,10 @@
 /* Подключение шрифта */
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Merriweather', sans-serif;
+    font-family: 'Montserrat Alternates', sans-serif;
 }
 
 body {
@@ -53,7 +52,7 @@ header {
 }
 
 .navigation a {
-    font-size: 1.2em; /* Размер шрифта */
+    font-size: 1.6em; /* Размер шрифта */
     color: #729238; /* Цвет ссылок */
     text-decoration: none; /* Убираем подчеркивание у ссылок */
     font-weight: 800; /* Полужирный шрифт */
@@ -84,12 +83,12 @@ header {
 
 .navigation .btnLogin-popup {
     margin-left: 40px; /* Отступ между кнопками */
-    padding: 10px 20px; /* Отступы внутри кнопки */
+    padding: 15px 25px; /* Отступы внутри кнопки */
     border: 2px solid #729238; /* Цвет и толщина рамки */
     background: transparent; /* Прозрачный фон */
     border-radius: 6px; /* Скругленные углы */
     color: #729238; /* Цвет текста */
-    font-size: 1.1em; /* Размер шрифта */
+    font-size: 1.5em; /* Размер шрифта */
     font-weight: 800; /* Полужирный шрифт */
     cursor: pointer; /* Курсор в виде руки */
     transition: background 0.3s, color 0.3s; /* Плавные переходы */
@@ -108,14 +107,12 @@ header {
     transform: translate(-50%, -50%); /* Сдвигаем на половину размера элемента, чтобы он точно оказался в центре */
     margin-bottom: 20px; /* Отступ снизу */
     color: #FEFAE0;
-    font-size: 2em; /* Увеличенный размер шрифта */
+    font-size: 2.3em; /* Увеличенный размер шрифта */
     font-weight: bold;
     justify-content: center; /* Центрируем по горизонтали */
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
     max-width: 700px; /* Ограничение ширины для большого экрана */
 }
-
-
 /* Форма поиска */
 .search-form {
     display: flex; /* Flexbox для формы */
@@ -126,16 +123,17 @@ header {
 }
 
 .search-form input {
-    height: 40px; /* Высота поля ввода */
-    padding: 0 10px; /* Отступы внутри поля */
+    height: 45px; /* Высота поля ввода (такая же, как у кнопки) */
+    padding: 10px; /* Отступы внутри поля */
     font-weight: 800; /* Полужирный шрифт */
-    font-size: 1em; /* Размер шрифта */
+    font-size: 0.89em; /* Размер шрифта */
     border: 2px solid #FEFAE0; /* Граница поля */
     border-radius: 6px; /* Скругленные углы */
     outline: none; /* Убираем обводку при фокусе */
     background: #FEFAE0; /* Цвет фона */
     color: #729238; /* Цвет текста */
     transition: border 0.3s; /* Плавный переход для границы */
+    width: 45678px; /* Ширина поля ввода (можно настроить по необходимости) */
 }
 
 .search-form input:focus {
@@ -143,7 +141,7 @@ header {
 }
 
 .search-form button {
-    height: 45px; /* Высота кнопки */
+    height: 45px; /* Высота кнопки (такая же, как у поля ввода) */
     padding: 0 15px; /* Отступы внутри кнопки */
     font-size: 1.1em; /* Размер шрифта */
     color: #729238; /* Цвет текста */
@@ -153,6 +151,9 @@ header {
     cursor: pointer; /* Курсор в виде руки */
     font-weight: 800; /* Полужирный шрифт */
     transition: background 0.3s, color 0.3s, border 0.3s; /* Плавные переходы */
+    display: flex; /* Flexbox для центрирования текста */
+    justify-content: center; /* Центрируем текст по горизонтали */
+    align-items: center; /* Центрируем текст по вертикали */
 }
 
 .search-form button:hover {
