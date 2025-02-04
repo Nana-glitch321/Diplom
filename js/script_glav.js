@@ -1,65 +1,116 @@
-// Получаем элементы
-const wrapper = document.querySelector(".wrapper");
-const loginLink = document.querySelector(".login-link");
-const registerLink = document.querySelector(".register-link");
-const btnPopup = document.querySelector(".btnLogin-popup");
-const closeIcon = document.querySelector(".icon-close");
+document.addEventListener("DOMContentLoaded", function () {
+    const wrapper = document.querySelector(".wrapper");
+    const loginPopup = document.querySelector(".btnLogin-popup");
+    const iconClose = document.querySelector(".icon-close");
 
-// Обработчики для переключения между формами
-registerLink.addEventListener("click", () => {
-    wrapper.classList.add("active");
-});
+    const loginBox = document.querySelector(".form-box.login");
+    const registerBox = document.querySelector(".form-box.register");
 
-loginLink.addEventListener("click", () => {
-    wrapper.classList.remove("active");
-});
+    const loginLink = document.querySelector(".login-link");
+    const registerLink = document.querySelector(".register-link");
 
-btnPopup.addEventListener("click", () => {
-    wrapper.classList.add("active-popup");
-});
+    const loginForm = document.querySelector("#loginForm");
+    const registerForm = document.querySelector("#registerForm");
 
-closeIcon.addEventListener("click", () => {
-    wrapper.classList.remove("active-popup");
-    wrapper.classList.remove("active");
-});
+    if (!wrapper || !loginPopup || !loginBox || !registerBox || !loginForm || !registerForm) {
+        console.error("Не найдены элементы формы. Проверь HTML.");
+        return;
+    }
 
-// Регистрация пользователя
-const registerForm = document.getElementById("registerForm");
-registerForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+    // Открытие окна (по умолчанию открывает форму входа)
+    loginPopup.addEventListener("click", () => {
+        wrapper.classList.add("active-popup");
+        loginBox.style.display = "block";
+        registerBox.style.display = "none";
+    });
 
-    // Получаем данные регистрации
-    const name = document.getElementById("registerName").value;
-    const email = document.getElementById("registerEmail").value;
-    const password = document.getElementById("registerPassword").value;
+    // Закрытие окна
+    if (iconClose) {
+        iconClose.addEventListener("click", function () {
+            wrapper.classList.remove("active-popup");
+        });
+    }
 
-    // Сохраняем данные в LocalStorage
-    localStorage.setItem("userEmail", email);
-    localStorage.setItem("userPassword", password);
+    // Переключение на вход
+    if (loginLink) {
+        loginLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            console.log("Переключение на вход");
+            loginBox.style.display = "block";
+            registerBox.style.display = "none";
+        });
+    }
 
-    alert("Регистрация успешна!");
+    // Переключение на регистрацию
+    if (registerLink) {
+        registerLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            console.log("Переключение на регистрацию");
+            loginBox.style.display = "none";
+            registerBox.style.display = "block";
+        });
+    }
 
-    // Переключаемся на форму входа
-    wrapper.classList.remove("active");
-});
+    // Проверка авторизации
+    fetch("php/session_status.php")
+        .then(response => response.json())
+        .then(data => {
+            if (data.logged_in) {
+                let newButton = document.createElement("button");
+                newButton.textContent = `Привет, ${data.user_name}`;
+                newButton.classList.add("btnLogin-popup");
+                newButton.setAttribute("aria-haspopup", "true");
+                newButton.setAttribute("aria-expanded", "false");
 
-// Вход пользователя
-const loginForm = document.getElementById("loginForm");
-loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+                newButton.addEventListener("click", function () {
+                    window.location.href = "php/logout.php";
+                });
 
-    // Получаем данные для входа
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
+                loginPopup.replaceWith(newButton);
+            }
+        })
+        .catch(error => console.error("Ошибка загрузки сессии:", error));
 
-    // Проверяем данные
-    const storedEmail = localStorage.getItem("userEmail");
-    const storedPassword = localStorage.getItem("userPassword");
+    // Вход пользователя
+    function handleLogin(event) {
+        event.preventDefault();
+        let formData = new FormData(loginForm);
+        fetch("php/login.php", { method: "POST", body: formData })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => console.error("Ошибка входа:", error));
+    }
+   
+    // Регистрация пользователя
+    function handleRegister(event) {
+        event.preventDefault();
+        let formData = new FormData(registerForm);
+        fetch("php/register.php", { method: "POST", body: formData })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Регистрация успешна! Теперь войдите.");
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => console.error("Ошибка регистрации:", error));
+    }
 
-    if (email === storedEmail && password === storedPassword) {
-        // Если данные верны, перенаправляем на страницу профиля
-        window.location.href = "ptofily.html";
-    } else {
-        alert("Неверная почта или пароль");
+    // Добавляем обработчики один раз
+    if (loginForm && !loginForm.dataset.listenerAdded) {
+        loginForm.addEventListener("submit", handleLogin);
+        loginForm.dataset.listenerAdded = "true";
+    }
+
+    if (registerForm && !registerForm.dataset.listenerAdded) {
+        registerForm.addEventListener("submit", handleRegister);
+        registerForm.dataset.listenerAdded = "true";
     }
 });

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PodcasterPro</title>
-    <link rel="stylesheet" href="../css/style_glav.css">
+    <link rel="stylesheet" href="./css/style_glav.css">
     <link rel="icon" href="./picture/favicon.png" type="image/png">
 </head>
 
@@ -14,14 +14,14 @@
     <header>
         <div class="header-left">
             <h2 class="logo">
-                <img src="../picture/logo.png" alt="Логотип PodcasterPro">
+                <img src="./picture/logo.png" alt="Логотип PodcasterPro">
             </h2>
         </div>
         <nav class="header-right navigation" role="navigation" aria-label="Основная навигация">
-            <a href="../index/index_glav.html">Главная</a>
-            <a href="../index/index_theme.html">Темы</a>
-            <a href="../index/index_channel.html">Каналы</a>
-            <a href="../index/index_pop.html">Популярное</a>
+            <a href="#">Главная</a>
+            <a href="./index/index_theme.html">Темы</a>
+            <a href="./index/index_channel.html">Каналы</a>
+            <a href="./index/index_pop.html">Популярное</a>
             <button class="btnLogin-popup" aria-haspopup="dialog" aria-expanded="false">Аккаунт</button>
         </nav>
     </header>
@@ -45,12 +45,12 @@
             <form id="loginForm" autocomplete="on">
                 <div class="input-box">
                     <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                    <input type="text" id="loginEmail" required>
+                    <input type="text" id="loginEmail" name="email" required>
                     <label>Эл. почта</label>
                 </div>
                 <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
-                    <input type="password" id="loginPassword" required>
+                    <input type="password" id="loginPassword" name="password" required>
                     <label>Пароль</label>
                 </div>
                 <div class="remember-forgot">
@@ -69,17 +69,17 @@
             <form id="registerForm" autocomplete="on">
                 <div class="input-box">
                     <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                    <input type="text" id="registerName" required>
+                    <input type="text" id="registerName" name="name" required>
                     <label>Имя</label>
                 </div>
                 <div class="input-box">
                     <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                    <input type="text" id="registerEmail" required>
+                    <input type="text" id="registerEmail" name="email" required>
                     <label>Эл. почта</label>
                 </div>
                 <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
-                    <input type="password" id="registerPassword" required>
+                    <input type="password" id="registerPassword" name="password" required>
                     <label>Пароль</label>
                 </div>
                 <div class="remember-forgot">
@@ -92,7 +92,6 @@
             </form>
         </div>
     </div>
-    <script src="../js/script_glav.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
