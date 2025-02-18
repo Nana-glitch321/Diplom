@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 newButton.setAttribute("aria-expanded", "false");
 
                 newButton.addEventListener("click", function () {
-                    window.location.href = "php/logout.php";
+                    window.location.href = "php/index_account.php";
                 });
 
                 loginPopup.replaceWith(newButton);
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    location.reload();
+                    window.location.href = "php/index_account.php"; // перенаправление на страницу аккаунта
                 } else {
                     alert(data.message);
                 }

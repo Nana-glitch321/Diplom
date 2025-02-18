@@ -9,8 +9,7 @@
         <title>PodcasterPro</title>
     </head>
     <body>
-        <?php include './index/index_glav.html'; ?>
-        <script src="./js/script_glav.js"></script>
-        <script src="./js/check_account.js"></script>
+        <?php include '../index/index_account.html'; ?>
+        <script src="../js/check_account.js"></script>
     </body>
 </html>
