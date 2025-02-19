@@ -9,6 +9,13 @@
         <a href="/theme">Темы</a>
         <a href="/channels">Каналы</a>
         <a href="/popular">Популярное</a>
-        <button class="btnLogin-popup" aria-haspopup="dialog" aria-expanded="false">Аккаунт</button>
+        <?php if ($user_name): ?>
+            <button class="btnLogin-popup" id="userGreeting">
+                Привет, <?php echo htmlspecialchars($user_name); ?>
+            </button>
+        <?php else: ?>
+            <button class="btnLogin-popup">Войти</button>
+        <?php endif; ?>
+
     </nav>
 </header>

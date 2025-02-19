@@ -1,6 +1,7 @@
 <?php
     session_start();
     $title = "Темы - PodcasterPro"; 
+    $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : '';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
