@@ -1,6 +1,7 @@
 <?php
     session_start();    
     $title = "Каналы - PodcasterPro"; 
+    $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : '';
 ?>
 
     <!DOCTYPE html>

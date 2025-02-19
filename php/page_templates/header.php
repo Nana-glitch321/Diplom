@@ -6,9 +6,16 @@
     </div>
     <nav class="header-right navigation" role="navigation" aria-label="Основная навигация">
         <a href="/">Главная</a>
-        <a href="../php/index_theme.php">Темы</a>
-        <a href="../php/index_channel.php">Каналы</a>
-        <a href="../php/index_pop.php">Популярное</a>
-        <button class="btnLogin-popup" aria-haspopup="dialog" aria-expanded="false">Аккаунт</button>
+        <a href="/theme">Темы</a>
+        <a href="/channels">Каналы</a>
+        <a href="/popular">Популярное</a>
+        <?php if ($user_name): ?>
+            <button class="btnLogin-popup" id="userGreeting">
+                Привет, <?php echo htmlspecialchars($user_name); ?>
+            </button>
+        <?php else: ?>
+            <button class="btnLogin-popup">Войти</button>
+        <?php endif; ?>
+
     </nav>
 </header>
