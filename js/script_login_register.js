@@ -12,22 +12,30 @@ document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.querySelector("#loginForm");
     const registerForm = document.querySelector("#registerForm");
 
+    const overlay = document.querySelector(".overlay")
+
     if (!wrapper || !loginPopup || !loginBox || !registerBox || !loginForm || !registerForm) {
-        console.error("Не найдены элементы формы. Проверь HTML.");
         return;
     }
 
     // Открытие окна (по умолчанию открывает форму входа)
     loginPopup.addEventListener("click", () => {
-        wrapper.classList.add("active-popup");
-        loginBox.style.display = "block";
-        registerBox.style.display = "none";
+        if (wrapper.classList.contains("active-popup")) {
+            wrapper.classList.remove("active-popup");
+            overlay.classList.remove("active");
+        } else {
+            wrapper.classList.add("active-popup");
+            loginBox.style.display = "block";
+            registerBox.style.display = "none";
+            overlay.classList.add("active");
+        }
     });
 
     // Закрытие окна
     if (iconClose) {
         iconClose.addEventListener("click", function () {
             wrapper.classList.remove("active-popup");
+            overlay.classList.remove("active");
         });
     }
 
@@ -35,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (loginLink) {
         loginLink.addEventListener("click", function (event) {
             event.preventDefault();
-            console.log("Переключение на вход");
             loginBox.style.display = "block";
             registerBox.style.display = "none";
         });
@@ -45,14 +52,13 @@ document.addEventListener("DOMContentLoaded", function () {
     if (registerLink) {
         registerLink.addEventListener("click", function (event) {
             event.preventDefault();
-            console.log("Переключение на регистрацию");
             loginBox.style.display = "none";
             registerBox.style.display = "block";
         });
     }
 
     // Проверка авторизации
-    fetch("php/session_status.php")
+    fetch("../../php/session_status.php")
         .then(response => response.json())
         .then(data => {
             if (data.logged_in) {
@@ -63,13 +69,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 newButton.setAttribute("aria-expanded", "false");
 
                 newButton.addEventListener("click", function () {
-                    window.location.href = "php/index_account.php";
+                    if (wrapper.classList.contains("active-popup")) {
+                        wrapper.classList.remove("active-popup");
+                        overlay.classList.remove("active");
+                    } else {
+                        window.location.href = "php/index_account.php";
+                    }
                 });
 
                 loginPopup.replaceWith(newButton);
             }
         })
         .catch(error => console.error("Ошибка загрузки сессии:", error));
+
 
     // Вход пользователя
     function handleLogin(event) {
@@ -84,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     alert(data.message);
                 }
             })
-            .catch(error => console.error("Ошибка входа:", error));
+            .catch(error => log.error("Ошибка входа:", error));
     }
    
     // Регистрация пользователя
@@ -100,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     alert(data.message);
                 }
             })
-            .catch(error => console.error("Ошибка регистрации:", error));
+            .catch(error => log.error("Ошибка регистрации:", error));
     }
 
     // Добавляем обработчики один раз

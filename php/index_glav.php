@@ -1,16 +1,25 @@
 <?php
-    session_start();    
+    session_start();
+    $title = "Главная - PodcasterPro"; 
 ?>
-
-    <!DOCTYPE html>
-    <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <title>PodcasterPro</title>
-    </head>
+<!DOCTYPE html>
+<html lang="ru">
+    <?php include './php/page_templates/head.php'; ?>
     <body>
-        <?php include './index/index_glav.html'; ?>
-        <script src="./js/script_glav.js"></script>
+        <?php include './php/page_templates/header.php'; ?>
+        <main>
+            <?php include './index/index_glav.html' ?>
+        </main>
+        <?php include './php/page_templates/auth.php'; ?>
+
+        <script src="./js/script_login_register.js"></script>
         <script src="./js/check_account.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <style> 
+            <?php include './css/style_glav.css' ?>
+            <?php include './css/page_template_styles/style_header.css' ?>
+            <?php include './css/page_template_styles/style_auth.css' ?>
+        </style>
     </body>
 </html>

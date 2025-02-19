@@ -1,0 +1,203 @@
+/* Модальные окна (вход и регистрация) */
+.wrapper {
+    position: fixed; /* Фиксированное положение поверх всего */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background: #729238;
+    border: 2px solid rgba(255, 225, 225, .5);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000; /* Убедимся, что форма выше других элементов */
+}
+
+.wrapper.active-popup {
+    opacity: 1;
+    visibility: visible;
+}
+
+.overlay {
+    position: fixed; /* Фон для затемнения */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Должен быть ниже формы */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+    display: none;
+}
+
+.wrapper .form-box.login,
+.wrapper .form-box.register {
+    display: none;
+}
+
+.wrapper.active .form-box.login {
+    display: block;
+}
+
+.wrapper.active.register-mode .form-box.register {
+    display: block;
+}
+
+.wrapper.active.register-mode .form-box.login {
+    display: none;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #FEFAE0;
+    margin: 30px 0;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #FEFAE0;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -5px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #FEFAE0;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: #FEFAE0;
+    line-height: 57px;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    font-size: 0.9em;
+}
+
+.remember-forgot label {
+    color: #FEFAE0;
+}
+
+.remember-forgot a {
+    color: #CFF64B;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.remember-forgot a:hover {
+    color: #FEFAE0;
+    text-decoration: underline;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #FEFAE0;
+    color: #729238;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background 0.3s, color 0.3s;
+}
+
+.btn:hover {
+    background: #CFF64B;
+    color: #FEFAE0;
+}
+
+.login-register {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-register a {
+    color: #CFF64B;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.login-register a:hover {
+    color: #FEFAE0;
+    text-decoration: underline;
+}
+
+.wrapper .icon-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #FEFAE0;
+    font-size: 2em;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* Центрированное сообщение */
+.center-message {
+    position: absolute; /* Устанавливаем позицию как абсолютную */
+    top: 50%; /* Сдвигаем по вертикали на 50% от высоты экрана */
+    left: 50%; /* Сдвигаем по горизонтали на 50% от ширины экрана */
+    transform: translate(-50%, -50%); /* Сдвигаем на половину размера элемента, чтобы он точно оказался в центре */
+    margin-bottom: 20px; /* Отступ снизу */
+    color: #FEFAE0;
+    font-size: 2.3em; /* Увеличенный размер шрифта */
+    font-weight: bold;
+    justify-content: center; /* Центрируем по горизонтали */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    max-width: 700px; /* Ограничение ширины для большого экрана */
+}
