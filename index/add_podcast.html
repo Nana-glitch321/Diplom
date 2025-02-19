@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить Подкаст</title>
+</head>
+<body>
+    <h1>Добавить новый подкаст</h1>
+    <form action="../php/add_podcast.php" method="POST" enctype="multipart/form-data">
+        <label for="title">Название подкаста:</label>
+        <input type="text" id="title" name="title" required><br><br>
+        
+        <label for="description">Описание:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+        
+        <label for="audio">Аудиофайл:</label>
+        <input type="file" id="audio" name="audio" accept="audio/*" required><br><br>
+
+        <label for="image">Изображение:</label>
+        <input type="file" id="image" name="image" accept="image/*" required><br><br>
+
+        <button type="submit">Добавить подкаст</button>
+    </form>
+</body>
+</html>

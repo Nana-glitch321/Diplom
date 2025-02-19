@@ -2,6 +2,19 @@
     session_start();
     $title = "Популярное - PodcasterPro"; 
     $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : '';
+    require_once '../php/database/db.php';
+
+    $sql = "SELECT * FROM Podcast ORDER BY created_at DESC LIMIT 5";
+    $result = $conn->query($sql);
+
+    // Сохраняем подкасты в массив для вывода
+    $podcasts = [];
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $podcasts[] = $row;
+        }
+    }
+    $conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -10,6 +23,15 @@
         <?php include '../php/page_templates/header.php'; ?>
         <main>
             <?php include '../index/index_pop.html' ?>
+            
+            <div class="podcast-list" style="margin: 250px">
+                <?php 
+                    // Включаем файл podcast.php для каждого подкаста
+                    foreach ($podcasts as $podcast):
+                        include '../php/page_templates/podcast.php';
+                    endforeach;
+                ?>
+            </div>
         </main>
         <?php include '../php/page_templates/auth.php'; ?>
 
