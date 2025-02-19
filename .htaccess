@@ -1,3 +1,16 @@
 RewriteEngine On
 RewriteCond %{THE_REQUEST} \s/index\.php [NC]
 RewriteRule ^index\.php$ / [R=301,L]
+
+# Перенаправление "/theme" на "php/index_theme.php"
+RewriteRule ^theme$ php/index_theme.php [L]
+
+# Перенаправление "/channels" на "php/index_channel.php"
+RewriteRule ^channels$ php/index_channel.php [L]
+
+# Перенаправление "/popular" на "php/index_pop.php"
+RewriteRule ^popular$ php/index_pop.php [L]
+
+# Перенаправление "/account" на "php/index_account.php"
+RewriteRule ^account$ php/index_account.php [L]
+
