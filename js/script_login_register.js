@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         wrapper.classList.remove("active-popup");
                         overlay.classList.remove("active");
                     } else {
-                        window.location.href = "php/index_account.php";
+                        window.location.href = "/account";
                     }
                 });
 

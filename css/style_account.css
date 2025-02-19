@@ -98,3 +98,117 @@ header {
     background: #CFF64B; /* Цвет фона при наведении */
     color: #FEFAE0; /* Цвет текста при наведении */
 }
+
+.card {
+    width: 100%;
+    max-width: 350px;
+    min-height: 500px;
+    background-color: #FEFAE0;
+    border-radius: 70px;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 70px;
+    transform: translateY(-40%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    background-color: #5e2ca5;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.info-row {
+    display: flex;
+    flex-wrap: wrap; /* Элементы могут переноситься на новые строки */
+    gap: 10px; /* Отступ между элементами */
+    width: 100%; /* Ширина контейнера — 100% от карточки */
+}
+
+.info {
+    width: calc(50% - 10px); /* Каждый элемент будет занимать 50% ширины контейнера, учитывая отступ */
+    padding: 10px;
+    box-sizing: border-box; /* Учитываем padding в ширине */
+    margin-top: 50px;
+}
+
+.short {
+    background-color: #729238;
+    border-radius: 70px;
+    font-size: 1.5rem;
+    padding: 20px;
+    text-align: center;
+}
+
+.long {
+    background-color: #729238;
+    border-radius: 70px;
+    font-size: 2rem;
+    padding: 30px;
+    text-align: center;
+}
+
+.content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vh;
+}
+
+.top-button {
+    width: 100px;
+    height: 30px;
+    background-color: #788F3E;
+    border-radius: 5px;
+}
+
+.container {
+    display: flex;
+    align-items: flex-start; /* Выравниваем элементы по левому краю */
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.top-bar {
+    width: 50%;
+    height: 100px;
+    background-color: #F8F6DA;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    margin-left: 400px;
+}
+
+.cards {
+    display: flex;
+    gap: 40px;
+    margin-left: 400px;
+}
+
+.card1 {
+    width: 350px;
+    height: 400px;
+    background-color: #F8F6DA;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text {
+    color: #5E772A;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: auto;
+}
