@@ -1,0 +1,200 @@
+/* Подключение шрифта */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Сохраняем вертикальное расположение элементов */
+    justify-content: center; /* Центрируем по вертикали */
+    align-items: center; /* Центрируем по горизонтали */
+    min-height: 100vh; /* Высота экрана */
+    background-color: #729238; /* Зеленый фон */
+    color: #FEFAE0;;
+    padding: 20px; /* Отступы по бокам */
+    text-align: center; /* Выравнивание текста */
+}
+
+/* Шапка сайта */
+header {
+    position: fixed; /* Фиксированное позиционирование */
+    top: 0; /* Верхний отступ */
+    left: 0; /* Левый отступ */
+    width: 100%; /* Ширина на всю страницу */
+    padding: 0 100px; /* Отступы по бокам */
+    height: 100px; /* Высота шапки */
+    background: #FEFAE0; /* Цвет фона */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для шапки */
+    display: flex; /* Используем Flexbox для расположения элементов */
+    justify-content: space-between; /* Разделяем элементы с отступами */
+    align-items: center; /* Центрируем по вертикали */
+    z-index: 99; /* Устанавливаем высокий приоритет отображения */
+}
+
+.logo {
+    display: flex; /* Flexbox для логотипа */
+    align-items: center; /* Центрируем логотип по вертикали */
+    height: 100%; /* Высота логотипа — 100% от родителя */
+}
+
+.logo img {
+    max-height: 140px; /* Максимальная высота изображения */
+    width: auto; /* Пропорциональная ширина */
+}
+
+.navigation {
+    display: flex; /* Flexbox для навигации */
+    align-items: center; /* Центрируем элементы навигации по вертикали */
+}
+
+.navigation a {
+    font-size: 1.2em; /* Размер шрифта */
+    color: #729238; /* Цвет ссылок */
+    text-decoration: none; /* Убираем подчеркивание у ссылок */
+    font-weight: 800; /* Полужирный шрифт */
+    margin-left: 40px; /* Отступ слева между ссылками */
+    position: relative; /* Для псевдоэлементов */
+    white-space: nowrap; /* Запрещаем перенос текста */
+    transition: color 0.3s; /* Плавный переход для изменения цвета */
+}
+
+.card {
+    /* Убираем фиксированное позиционирование */
+    position: static;
+    transform: none;
+    /* Новые стили для расположения справа */
+    margin-left: auto;
+    margin-right: 20px;
+    /* Остальные стили */
+    width: 550px;
+    max-width: 400px; /* Увеличим ширину для удобства */
+    min-height: 500px;
+    background-color: #FEFAE0;
+    border-radius: 40px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+}
+
+/* Стили для всех полей ввода */
+.card input[type="text"],
+.card textarea,
+.card input[type="file"] {
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    font-weight: 800;
+    font-size: 0.89em;
+    border: 2px solid #729238;
+    border-radius: 6px;
+    outline: none;
+    background: #FEFAE0;
+    color: #729238;
+    transition: border 0.3s;
+    margin-bottom: 15px;
+}
+
+/* Специфичные стили для текстовой области */
+.card textarea {
+    height: 120px; /* Увеличим высоту для текстового поля */
+    resize: vertical; /* Разрешаем вертикальное изменение размера */
+}
+
+/* Стили для кнопки */
+.card button[type="submit"] {
+    width: 100%;
+    height: 50px;
+    background: #729238;
+    color: #FEFAE0;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.card button[type="submit"]:hover {
+    background: #5E772A;
+}
+
+/* Стили для меток */
+.card label {
+    color: #729238;
+    font-weight: 800;
+    font-size: 1em;
+    align-self: flex-start; /* Выравниваем метки по левому краю */
+}
+
+/* Стили для файловых инпутов */
+.card input[type="file"] {
+    padding: 8px;
+    border-style: dashed;
+}
+
+/* Кастомизация плейсхолдеров */
+.card input::placeholder,
+.card textarea::placeholder {
+    color: #729238;
+    opacity: 0.7;
+}
+
+.form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Стили для иконок файловых инпутов */
+input[type="file"]::-webkit-file-upload-button {
+    background: #729238;
+    color: #FEFAE0;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+    background: #5E772A;
+}
+
+.control-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(255, 117, 140, 0.3);
+}
+
+.control-btn i {
+    font-size: 18px;
+}
+
+.control-btn:hover {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    box-shadow: 0 6px 15px rgba(255, 117, 140, 0.5);
+    transform: translateY(-2px);
+}
+
+.control-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 8px rgba(255, 117, 140, 0.4);
+}

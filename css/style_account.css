@@ -396,14 +396,13 @@ header {
     background: none;
     border: none;
     cursor: pointer;
-    color: #666;
+    color: #FEFAE0;
     font-size: 18px;
-    padding: 6px;
     transition: color 0.2s;
 }
 
 .control-btn:hover {
-    color: #333;
+    color: #CFF64B;
 }
 
 .add-to-wishlist {
