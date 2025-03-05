@@ -1,0 +1,32 @@
+<body>
+    <form action="../php/add_podcast.php" method="POST" enctype="multipart/form-data">
+        <div class="card">
+
+            <div class="form-group">
+                <label for="author">Автор подкаста:</label>
+                <input type="text" id="title" name="author" required>
+            </div>
+
+            <div class="form-group">
+                <label for="title">Название подкаста:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="description">Описание:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+    
+            <div class="form-group">
+                <label for="audio">Аудиофайл:</label>
+                <input type="file" id="audio" name="audio" accept="audio/*" required>
+            </div>
+            <div class="form-group">
+                <label for="image">Изображение:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+    
+            <button type="submit">Добавить подкаст</button>
+        </div>
+    </form>
+</body>

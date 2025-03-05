@@ -1,9 +1,32 @@
-<body>
+<body>  
     <div class="card">
-        <div class="profile-pic"></div>
-        <div class="info-row">
-            <div class="info short"></div>
-            <div class="info long"></div>
+        <div class="profile-pic">
+            <!-- Динамическая аватарка из базы -->
+            <?php if(!empty($user_avatar)): ?>
+                <img src="../uploads/<?= $user_avatar ?>?v=<?= time() ?>" alt="Аватар" class="avatar">
+            <?php else: ?>
+                <div class="avatar-placeholder"><?= mb_substr($user_name, 0, 1) ?></div>
+            <?php endif; ?>
+            <!-- Форма для загрузки новой аватарки -->
+            <form class="avatar-upload" action="../php/upload_avatar.php" method="post" enctype="multipart/form-data">
+                <input type="file" name="avatar" id="avatar-input" accept="image/*">
+                <label for="avatar-input" class="upload-label">
+                    <i class="fas fa-camera"></i>
+                </label>
+                <button type="submit">Загрузить</button>
+            </form>
+        </div>
+         <div class="info-row">
+            <div class="info short">
+                <button class="control-btn" onclick="window.location.href='../php/index_add_podcast.php'">
+                    </i> Добавить подкаст
+                </button>
+            </div>
+            <div class="info short">
+                <button class="control-btn" onclick="">
+                    </i> Удалить подкаст
+                </button>
+            </div>
             <div class="info short"></div>
             <div class="info long"></div>
         </div>
@@ -15,10 +38,49 @@
         <div class="cards">
             <div class="card1">
                 <span class="text">Подкасты</span>
+                <!-- Секция для отображения любимых подкастов -->
+                <div class="favorites">
+                    <!-- Динамически добавляемые подкасты -->
+                </div>
             </div>
             <div class="card1">
                 <span class="text">Авторы</span>
             </div>
         </div>
     </div>
-</body> 
+
+    <div class="player-container">
+        <div class="cover-container">
+            <img src="" alt="Podcast Cover" class="cover">
+        </div>
+        <div class="info-container">
+            <div class="author" id="author">Автор подкаста</div>
+            <div class="title">Название подкаста</div>
+            <div class="controls">
+                <button class="control-btn" id="prev">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button class="control-btn play-pause" id="playPause">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="control-btn" id="next">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+            </div>
+            
+            <audio id="audio-player" preload="metadata"></audio>
+            <input type="range" class="progress-bar" id="progress-bar" value="0" max="100" step="1">
+            <div class="progress-time">
+                <span class="current-time" id="current-time">00:00</span> / <span class="duration" id="duration">00:00</span>
+            </div>
+        </div>
+        <button class="add-to-wishlist" data-podcast-id="<?php echo $podcast['id']; ?>" onclick="addToFavorites(this)">
+            <i class="fas fa-heart"></i>
+        </button>
+        <button class="control-btn" onclick="window.location.href='../php/podcasts.php'">
+            <i class="fas fa-list"></i> Все подкасты
+        </button>
+    </div>
+
+    <script src="../js/script_audio_player.js"></script>
+</body>
