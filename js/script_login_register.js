@@ -57,31 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Проверка авторизации
-    fetch("../../php/session_status.php")
-        .then(response => response.json())
-        .then(data => {
-            if (data.logged_in) {
-                let newButton = document.createElement("button");
-                newButton.textContent = `Привет, ${data.user_name}`;
-                newButton.classList.add("btnLogin-popup");
-                newButton.setAttribute("aria-haspopup", "true");
-                newButton.setAttribute("aria-expanded", "false");
-
-                newButton.addEventListener("click", function () {
-                    if (wrapper.classList.contains("active-popup")) {
-                        wrapper.classList.remove("active-popup");
-                        overlay.classList.remove("active");
-                    } else {
-                        window.location.href = "/account";
-                    }
-                });
-
-                loginPopup.replaceWith(newButton);
-            }
-        })
-        .catch(error => console.error("Ошибка загрузки сессии:", error));
-
 
     // Вход пользователя
     function handleLogin(event) {
@@ -96,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     alert(data.message);
                 }
             })
-            .catch(error => log.error("Ошибка входа:", error));
+            .catch(error => console.error("Ошибка входа:", error));
     }
    
     // Регистрация пользователя
@@ -112,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     alert(data.message);
                 }
             })
-            .catch(error => log.error("Ошибка регистрации:", error));
+            .catch(error => console.error("Ошибка регистрации:", error));
     }
 
     // Добавляем обработчики один раз

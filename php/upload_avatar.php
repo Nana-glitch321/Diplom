@@ -22,6 +22,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['avatar'])) {
     if ($_FILES['avatar']['error'] == UPLOAD_ERR_OK) {
         $user_id = $_SESSION['user_id']; // Получаем ID пользователя из сессии
 
+        // Получаем текущий аватар из базы данных
+        $sql = "SELECT avatar FROM users WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $stmt->bind_result($current_avatar);
+        $stmt->fetch();
+        $stmt->close();
+
+        // Папка для сохранения аватарок
+        $upload_dir = '../uploads/';
+        
+        // Если текущий аватар существует, удаляем его
+        if ($current_avatar && file_exists($upload_dir . $current_avatar)) {
+            unlink($upload_dir . $current_avatar); // Удаляем старое изображение
+        }
+
         // Получаем информацию о файле
         $avatar_tmp = $_FILES['avatar']['tmp_name'];
         $avatar_name = $_FILES['avatar']['name'];
@@ -29,17 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['avatar'])) {
         
         // Генерируем уникальное имя для файла
         $avatar_new_name = uniqid() . '.' . $avatar_extension;
-        
-        // Папка для сохранения аватарок
-        $upload_dir = '../uploads/';
-        
+
+        // Путь для сохранения файла
+        $upload_file = $upload_dir . $avatar_new_name;
+
         // Проверяем, существует ли папка
         if (!is_dir($upload_dir)) {
             mkdir($upload_dir, 0777, true);
         }
-
-        // Путь для сохранения файла
-        $upload_file = $upload_dir . $avatar_new_name;
 
         // Перемещаем файл в директорию
         if (move_uploaded_file($avatar_tmp, $upload_file)) {
@@ -65,5 +79,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['avatar'])) {
 
 // Закрываем соединение с базой данных
 $conn->close();
-
 ?>
