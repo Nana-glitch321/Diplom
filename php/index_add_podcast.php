@@ -11,19 +11,19 @@
 
     <?php include '../php/page_templates/head.php'; ?>
     <body>
-        <?php include '../php/page_templates/header.php'; ?>
 
-        <main>
+        <main id="page-content">
             <?php include '../index/add_podcast.html' ?>
-            <?php include '../php/page_templates/auth.php'; ?>
         </main>
+        <?php include '../php/page_templates/header.php'; ?>
 
         <style> 
             <?php include '../css/add_podcast.css' ?>
             <?php include '../css/page_template_styles/style_header.css' ?>
             <?php include '../css/page_template_styles/style_auth.css' ?>
         </style>
-        <script src="../js/script_login_register.js"></script>
-        <script src="../js/check_account.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
     </body>
 </html>

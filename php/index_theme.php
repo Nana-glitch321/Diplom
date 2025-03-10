@@ -7,16 +7,11 @@
 <html lang="ru">
     <?php include '../php/page_templates/head.php'; ?>
     <body>
-        <?php include '../php/page_templates/header.php'; ?>
-        <?php include '../php/page_templates/auth.php'; ?>
 
-        <main>
+        <main id="page-content"> 
             <?php include '../index/index_theme.html' ?>
         </main>
-
-        <script src="../js/script_login_register.js"></script>
-        <script src="../js/check_account.js"></script>
-
+        <?php include '../php/page_templates/header.php'; ?>
 
         <style> 
             <?php include '../css/style_theme.css' ?>

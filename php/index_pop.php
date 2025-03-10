@@ -54,40 +54,30 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title; ?></title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <?php include '../php/page_templates/head.php'; ?>
-    <style> 
-        <?php include '../css/style_pop.css'; ?>
-        <?php include '../css/page_template_styles/style_header.css'; ?>
-        <?php include '../css/page_template_styles/style_auth.css'; ?>
-    </style>
-</head>
-<body>
-    <?php include '../php/page_templates/header.php'; ?>
-    <main>
-        <?php include '../index/index_pop.html'; ?>
+    <body>
+        <main id="page-content">
+            <?php include '../index/index_pop.html'; ?>
 
-        <div class="podcast-list" style="margin: 250px">
-            <?php foreach ($podcasts as $podcast): ?>
-                <?php include '../php/page_templates/podcast.php'; ?>
-            <?php endforeach; ?>
-        </div>
-    </main>
+            <div class="podcast-list" style="margin: 250px">
+                <?php foreach ($podcasts as $podcast): ?>
+                    <?php include '../php/page_templates/podcast.php'; ?>
+                <?php endforeach; ?>
+            </div>
+        </main>
+        <?php include '../php/page_templates/header.php'; ?>
 
-    <?php include '../php/page_templates/auth.php'; ?>
-
-    <script>
-        const userFavorites = <?php echo json_encode($isFavorite); ?>;
-    </script>
-
-    <script src="../js/add_favorites.js"></script>
-    <script src="../js/script_login_register.js"></script>
-    <script src="../js/check_account.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-</body>
+        <script>
+            const userFavorites = <?php echo json_encode($isFavorite); ?>;
+        </script>
+        <style> 
+            <?php include '../css/style_pop.css' ?>
+            <?php include '../css/page_template_styles/style_header.css' ?>
+            <?php include '../css/page_template_styles/style_auth.css' ?>
+        </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <script src="../js/add_favorites.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    </body>
 </html>
