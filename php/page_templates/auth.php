@@ -46,7 +46,11 @@
                     <label>Пароль</label>
                 </div>
                 <div class="remember-forgot">
-                    <label><input type="checkbox">Соглашаюсь с правилами сайта</label>
+             <label>
+                 <input type="checkbox" id="soglCheckbox">
+                 Соглашаюсь с 
+                 <a href="index/sogl.html">правилами сайта</a>
+            </label>
                 </div>
                 <button type="submit" class="btn">Зарегистрироваться</button>
                 <div class="login-register">

@@ -12,9 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.querySelector("#loginForm");
     const registerForm = document.querySelector("#registerForm");
 
-    const overlay = document.querySelector(".overlay")
+    const overlay = document.querySelector(".overlay");
 
-    if (!wrapper || !loginPopup || !loginBox || !registerBox || !loginForm || !registerForm) {
+    if (!wrapper || !loginPopup || !loginBox || !registerBox || !loginForm || !registerForm || !soglCheckbox) {
         return;
     }
 
@@ -82,7 +82,6 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error("Ошибка загрузки сессии:", error));
 
-
     // Вход пользователя
     function handleLogin(event) {
         event.preventDefault();
@@ -96,12 +95,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     alert(data.message);
                 }
             })
-            .catch(error => log.error("Ошибка входа:", error));
+            .catch(error => console.error("Ошибка входа:", error));
     }
-   
-    // Регистрация пользователя
+
+    // Регистрация пользователя (теперь проверяет чекбокс)
     function handleRegister(event) {
         event.preventDefault();
+        let soglCheckbox = document.getElementById("soglCheckbox");
+        
+        if (!soglCheckbox.checked) {
+            alert("Для регистрации необходимо согласиться с правилами сайта.");
+            return;
+        }
+
         let formData = new FormData(registerForm);
         fetch("php/register.php", { method: "POST", body: formData })
             .then(response => response.json())
@@ -112,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     alert(data.message);
                 }
             })
-            .catch(error => log.error("Ошибка регистрации:", error));
+            .catch(error => console.error("Ошибка регистрации:", error));
     }
 
     // Добавляем обработчики один раз

@@ -1,0 +1,194 @@
+/* Плейер скрыт по умолчанию */
+.player {
+    position: fixed;
+    bottom: -100%; /* Скрыт за пределами экрана */
+    left: 0;
+    width: 100%;
+    height: 200px; /* Высота плейера */
+    background-color: #F8F6DA;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    transition: bottom 0.5s ease-in-out; /* Плавное появление снизу */
+    z-index: 100; /* Плейер будет поверх остальных элементов */
+}
+
+.player-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    color: #5E772A;
+    margin-bottom: 10px;
+}
+
+.player button {
+    background-color: #729238;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.player button:hover {
+    background-color: #5E772A;
+}
+
+/* Появление плейера */
+.player.show {
+    bottom: 0; /* Плейер появляется снизу */
+}
+
+.player-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #04456b;
+    border-radius: 12px 12px 0 0;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 15px;
+    flex-direction: row;
+    align-items: center;
+    z-index: 1000;
+    visibility: hidden; /* Плеер скрыт */
+    opacity: 0; /* Плеер невидим */
+    transition: visibility 0s 0.3s, opacity 0.3s linear;
+}
+
+.player-container.show {
+    visibility: visible; /* Показываем плеер */
+    opacity: 1; /* Делаем плеер видимым */
+    transition: visibility 0s, opacity 0.3s linear;
+}
+
+.cover-container {
+    position: relative;
+    width: 80px;  /* Ширина изображения */
+    height: 80px; /* Высота изображения */
+}
+
+.cover {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    animation: rotate 20s linear infinite;
+    animation-play-state: paused;
+}
+
+.player-card.playing .cover {
+    animation-play-state: running;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.info-container {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    text-align: left; /* Текст выравнивается слева */
+}
+
+.author {
+    font-size: 14px;
+    font-weight: 500;
+    color: #FEFAE0;
+    opacity: 0.8;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #CFF64B;
+    -webkit-text-stroke: 0.5px #729238;
+}
+
+.controls {
+    align-items: center;
+    gap: 12px;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #FEFAE0;
+    font-size: 18px;
+    transition: color 0.2s;
+}
+
+.control-btn:hover {
+    color: #CFF64B;
+}
+
+.add-to-wishlist {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.add-to-wishlist:hover {
+    color: #e74c3c;
+}
+
+/* Прогресс бар */
+.progress-bar {
+    width: 100%;
+    margin-top: 12px;
+    background-color: #ddd;
+    border-radius: 10px;
+    height: 5px;
+    -webkit-appearance: none;
+}
+
+.progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #729238;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.progress-bar::-webkit-slider-runnable-track {
+    background-color: #ddd;
+    border-radius: 10px;
+}
+
+/* Время прогресса */
+.progress-time {
+    font-size: 14px;
+    margin-top: 8px;
+    color: #CFF64B;
+}

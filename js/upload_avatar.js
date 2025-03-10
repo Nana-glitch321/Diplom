@@ -17,16 +17,24 @@ document.getElementById('avatar-input').addEventListener('change', function(e) {
             const form = document.querySelector('.avatar-upload');
             if (form) {
                 const formData = new FormData(form);
+                
+                // Логируем форму и данные
+                console.log('Отправляем данные на сервер:', formData);
+
                 fetch(form.action, {
                     method: 'POST',
                     body: formData
                 })
                 .then(response => response.json()) // Обрабатываем JSON ответ
                 .then(data => {
+                    console.log('Ответ от сервера:', data); // Логируем ответ от сервера
                     if (data.status === 'success') {
                         // Обновляем изображение с сервера
                         const avatarElement = document.querySelector('.avatar');
-                        avatarElement.src = `../uploads/${data.avatar}?v=${new Date().getTime()}`;
+                        avatarElement.src = `../uploads/${data.avatar}?v=${new Date().getTime()}`; // Обновляем аватар
+
+                        // Обновление страницы, чтобы отобразить изменения
+                        location.reload(); // Перезагружаем страницу
                     } else {
                         alert('Ошибка при загрузке аватара');
                     }
