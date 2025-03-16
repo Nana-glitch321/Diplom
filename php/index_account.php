@@ -24,27 +24,24 @@ if (!empty($user_id)) {
     $stmt->close();
 }
 
-// Проверяем, какие подкасты в избранном, если пользователь залогинен
-$isFavorite = [];
+// Проверяем, какие жанры в избранном, если пользователь залогинен
+$isFavoriteGenres = [];
 
-if (!empty($user_id) && !empty($podcastIds)) {
-    $placeholders = implode(',', array_fill(0, count($podcastIds), '?'));
-    $query = "SELECT podcast_id FROM favorites WHERE user_id = ? AND podcast_id IN ($placeholders)";
-
+if (!empty($user_id)) {
+    $query = "SELECT g.id, g.name FROM favorite_genres f_g JOIN genres g ON f_g.genre_id = g.id WHERE f_g.user_id = ?";
+    
     $stmt = $conn->prepare($query);
 
     if ($stmt === false) {
         die("Ошибка в подготовке запроса: " . $conn->error);
     }
 
-    $types = str_repeat('i', count($podcastIds) + 1);
-    $params = array_merge([$user_id], $podcastIds);
-    $stmt->bind_param($types, ...$params);
-
+    $stmt->bind_param("i", $user_id);
+    
     if ($stmt->execute()) {
         $result = $stmt->get_result();
         while ($row = $result->fetch_assoc()) {
-            $isFavorite[$row['podcast_id']] = true;
+            $isFavoriteGenres[] = $row;
         }
     } else {
         die("Ошибка выполнения запроса: " . $stmt->error);
@@ -58,21 +55,21 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="ru">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 <?php include '../php/page_templates/head.php'; ?>
 <body>
-
     <main id="page-content">
         <?php include '../index/index_account.html'; ?>
         <script>
             <?php include '../js/view_favorites.js'; ?>
         </script>
+        <script>
+            <?php include '../js/get_all_favorite_genres.js'; ?>
+        </script>
     </main>
     <?php include '../php/page_templates/header.php'; ?>
 
     <script>
-        const userFavorites = <?php echo json_encode($isFavorite); ?>;
+        const userFavorites = <?php echo json_encode($isFavoriteGenres); ?>;
     </script>
     <script> 
         <?php include "../js/upload_avatar.js" ?>
@@ -82,5 +79,7 @@ $conn->close();
         <?php include '../css/page_template_styles/style_header.css'; ?>
         <?php include '../css/page_template_styles/style_auth.css'; ?>
     </style>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

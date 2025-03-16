@@ -5,7 +5,7 @@ document.getElementById('avatar-input').addEventListener('change', function(e) {
 
         // После чтения файла
         reader.onload = function(event) {
-            const avatarElement = document.querySelector('.avatar'); // Элемент для отображения аватара
+            const avatarElement = document.querySelector('.profile-pic'); // Элемент для отображения аватара
             const avatarPlaceholder = document.querySelector('.avatar-placeholder'); // Элемент плейсхолдера
 
             if (avatarElement && avatarPlaceholder) {
@@ -30,7 +30,7 @@ document.getElementById('avatar-input').addEventListener('change', function(e) {
                     console.log('Ответ от сервера:', data); // Логируем ответ от сервера
                     if (data.status === 'success') {
                         // Обновляем изображение с сервера
-                        const avatarElement = document.querySelector('.avatar');
+                        const avatarElement = document.querySelector('.profile-pic');
                         avatarElement.src = `../uploads/${data.avatar}?v=${new Date().getTime()}`; // Обновляем аватар
 
                         // Обновление страницы, чтобы отобразить изменения

@@ -18,7 +18,7 @@ body {
     margin-top: 100px;
 }
 
-.custom-player-card {
+.player-card {
     background: #FEFAE0;
     width: 1000px;
     height: 285px;
@@ -32,64 +32,66 @@ body {
     align-items: center;
 }
 
-.custom-cover-container {
+.cover-container {
     position: relative;
 }
 
-.custom-cover {
+.cover {
     width: 100px;
     height: 100px;
     border-radius: 6px;
     object-fit: cover;
+    animation: rotate 20s linear infinite;
+    animation-play-state: paused;
 }
 
-.custom-info-container {
-    text-align: center;
+.player-card.playing .cover {
+    animation-play-state: running;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.info-container {
+    flex: 1;
+    min-width: 0;
     width: 100%;
+    text-align: center;
 }
 
-.custom-title {
+.title {
     font-size: 16px;
     font-weight: 600;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: #CFF64B;
     -webkit-text-stroke: 0.5px #729238;
 }
 
-.custom-controls {
-    display: flex;
+.controls {
+    align-items: center;
     gap: 12px;
 }
 
-.custom-control-btn {
+.control-btn {
     background: none;
     border: none;
     cursor: pointer;
+    color: #666;
     font-size: 18px;
     padding: 6px;
     transition: color 0.2s;
-    color: #666;
 }
 
-.custom-control-btn:hover {
+.control-btn:hover {
     color: #333;
 }
 
-.custom-progress-bar {
-    width: 100%;
-    margin-top: 12px;
-    background-color: #ddd;
-    border-radius: 10px;
-    height: 5px;
-    -webkit-appearance: none;
-}
-
-.custom-progress-time {
-    font-size: 14px;
-    margin-top: 8px;
-    color: #333;
-}
-
-.custom-add-to-wishlist {
+.add-to-wishlist {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -105,12 +107,12 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.custom-add-to-wishlist:hover {
+.add-to-wishlist:hover {
     color: #e74c3c;
 }
 
 /* Прогресс бар */
-.custom-progress-bar {
+.progress-bar {
     width: 100%;
     margin-top: 12px;
     background-color: #ddd;
@@ -119,7 +121,7 @@ body {
     -webkit-appearance: none;
 }
 
-.custom-progress-bar::-webkit-slider-thumb {
+.progress-bar::-webkit-slider-thumb {
     -webkit-appearance: none;
     background-color: #729238;
     width: 10px;
@@ -128,13 +130,13 @@ body {
     cursor: pointer;
 }
 
-.custom-progress-bar::-webkit-slider-runnable-track {
+.progress-bar::-webkit-slider-runnable-track {
     background-color: #ddd;
     border-radius: 10px;
 }
 
 /* Время прогресса */
-.custom-progress-time {
+.progress-time {
     font-size: 14px;
     margin-top: 8px;
     color: #333;

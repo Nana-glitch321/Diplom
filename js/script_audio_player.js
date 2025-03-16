@@ -1,133 +1,99 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const audioPlayer = document.getElementById("audio-player");
-    const playPauseBtn = document.getElementById("playPause");
-    const progressBar = document.getElementById("progress-bar");
-    const currentTimeElem = document.getElementById("current-time");
-    const durationElem = document.getElementById("duration");
-    const podcastCover = document.getElementById("podcast-cover");
-    const podcastTitle = document.getElementById("podcast-title");
-    const authorElem = document.getElementById("author");
+// Получаем элементы плеера
+const audioPlayer = document.getElementById("audio-player");
+const playPauseBtn = document.getElementById("playPause");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
+const progressBar = document.getElementById("progress-bar");
+const currentTimeElem = document.getElementById("current-time");
+const durationElem = document.getElementById("duration");
+const authorElem = document.getElementById("author")
 
-    let isSeeking = false;
+// Переменная для отслеживания состояния ползунка
+let isSeeking = false;
 
-    // 🟢 Загружаем сохраненное состояние
-    function loadSavedState() {
-        const savedPodcast = localStorage.getItem("currentPodcast");
-        if (savedPodcast) {
-            const { src, currentTime, isPlaying, cover, title, author } = JSON.parse(savedPodcast);
+// Функция для обновления времени на плеере
+function updateProgress() {
+    if (!isSeeking) { // Проверка, чтобы избежать обновления при изменении слайдера
+        const currentTime = audioPlayer.currentTime;
+        const duration = audioPlayer.duration;
 
-            audioPlayer.src = src;
-            audioPlayer.currentTime = currentTime || 0;
-            podcastCover.src = cover || "";
-            podcastTitle.textContent = title || "Название подкаста";
-            authorElem.textContent = author || "Автор";
+        // Обновляем прогресс-бар
+        progressBar.value = (currentTime / duration) * 100;
 
-            if (isPlaying) {
-                audioPlayer.play();
-                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            }
-        }
+        // Обновляем время
+        currentTimeElem.textContent = formatTime(currentTime);
+        durationElem.textContent = formatTime(duration);
     }
+}
 
-    loadSavedState();
+// Форматируем время в минутах и секундах
+function formatTime(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
 
-    // 🟢 Сохраняем состояние плеера
-    function saveState() {
-        localStorage.setItem(
-            "currentPodcast",
-            JSON.stringify({
-                src: audioPlayer.src,
-                currentTime: audioPlayer.currentTime,
-                isPlaying: !audioPlayer.paused,
-                cover: podcastCover.src,
-                title: podcastTitle.textContent,
-                author: authorElem.textContent,
-            })
-        );
-    }
-
-    // Обновляем состояние при проигрывании
-    audioPlayer.addEventListener("timeupdate", () => {
-        if (!isSeeking) {
-            progressBar.value = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-            currentTimeElem.textContent = formatTime(audioPlayer.currentTime);
-            durationElem.textContent = formatTime(audioPlayer.duration);
-            saveState();
-        }
-    });
-
-    // Переключение воспроизведения
-    playPauseBtn.addEventListener("click", () => {
-        if (audioPlayer.paused) {
-            audioPlayer.play();
-            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        } else {
-            audioPlayer.pause();
-            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-        }
-        saveState();
-    });
-
-    // Обработчик изменения ползунка
-    progressBar.addEventListener("input", () => {
-        isSeeking = true;
-        audioPlayer.currentTime = (progressBar.value / 100) * audioPlayer.duration;
-        currentTimeElem.textContent = formatTime(audioPlayer.currentTime);
-    });
-
-    progressBar.addEventListener("mouseup", () => {
-        isSeeking = false;
-        saveState();
-    });
-
-    // Функция форматирования времени
-    function formatTime(seconds) {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = Math.floor(seconds % 60);
+    if (hours > 0) {
+        return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
+    } else {
         return `${minutes.toString().padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
     }
+}
 
-    document.querySelectorAll(".play-podcast").forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            const src = btn.getAttribute("data-src");
-            const title = btn.getAttribute("data-title");
-            const author = btn.getAttribute("data-author");
-            const cover = btn.getAttribute("data-cover");
-    
-            audioPlayer.src = src;
-            audioPlayer.play();
-            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-    
-            podcastCover.src = cover;
-            podcastTitle.textContent = title;
-            authorElem.textContent = author;
-    
-            saveState();
-        });
-    });
 
-    // Логгирование на случай проблем с кнопкой playPause
-    if (playPauseBtn) {
-        console.log('Кнопка Play/Pause найдена');
+// Функция для переключения воспроизведения
+function togglePlayPause() {
+    if (audioPlayer.paused) {
+        audioPlayer.play();
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
     } else {
-        console.log('Кнопка Play/Pause не найдена');
+        audioPlayer.pause();
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
     }
+}
 
-    // Прочие обработчики событий на ссылках
-    document.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", (e) => {
-            // Проверяем, чтобы это не была ссылка на внешний ресурс
-            if (link.hostname === window.location.hostname) {
-                e.preventDefault();
-                fetch(link.href)
-                    .then((response) => response.text())
-                    .then((html) => {
-                        document.getElementById("page-content").innerHTML = html; // Загружаем новую страницу в #content
-                        window.history.pushState({}, "", link.href); // Меняем URL
-                    })
-                    .catch((error) => console.error("Ошибка загрузки страницы:", error));
-            }
-        });
-    });
+// Переключение на предыдущий трек
+function prevTrack() {
+    // Логика для переключения на предыдущий трек
+}
+
+// Переключение на следующий трек
+function nextTrack() {
+    // Логика для переключения на следующий трек
+}
+
+// Обработчики событий
+audioPlayer.addEventListener("timeupdate", updateProgress);
+
+progressBar.addEventListener("input", () => {
+    // Когда ползунок изменяется, обновляем текущую позицию аудио
+    const newTime = (progressBar.value / 100) * audioPlayer.duration;
+    audioPlayer.currentTime = newTime;
+    console.log(newTime);
+    currentTimeElem.textContent = formatTime(newTime);  // Обновляем таймер при изменении ползунка
+});
+
+// Дополнительный обработчик для начала изменения слайдера
+progressBar.addEventListener("mousedown", () => {
+    isSeeking = true;
+    audioPlayer.pause(); // Останавливаем воспроизведение, когда пользователь взаимодействует с ползунком
+    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+
+});
+
+// Дополнительный обработчик для окончания изменения слайдера
+progressBar.addEventListener("mouseup", () => {
+    isSeeking = false;
+    audioPlayer.play(); // Возобновляем воспроизведение после изменения ползунка
+    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+});
+
+// Обработчики для кнопок
+playPauseBtn.addEventListener("click", togglePlayPause);
+prevBtn.addEventListener("click", prevTrack);
+nextBtn.addEventListener("click", nextTrack);
+
+// Инициализация времени на плеере
+audioPlayer.addEventListener("loadedmetadata", () => {
+    durationElem.textContent = formatTime(audioPlayer.duration);
+    progressBar.value = 0; // Устанавливаем начальное значение ползунка
 });

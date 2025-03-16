@@ -32,6 +32,7 @@ body {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     display: flex; /* Используем Flexbox для внутренней структуры */
     flex-direction: column; /* Вертикальное расположение элементов */
+    position: relative; /* Для позиционирования кнопки */
 }
 
 .card img {
@@ -70,4 +71,26 @@ body {
     margin-top: 16px;
     color: #729238;
     font-weight: 800;
+}
+
+/* Стиль для кнопки добавления в избранное */
+.favorite-btn {
+    position: absolute; /* Позиционируем кнопку относительно родительской карточки */
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон */
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10; /* Чтобы кнопка была сверху */
+}
+
+.favorite-btn i {
+    color: #729238; /* Цвет иконки */
+    font-size: 20px;
+}
+
+.favorite-btn:hover {
+    background-color: rgba(255, 255, 255, 0.9); /* Легкое изменение фона при наведении */
 }

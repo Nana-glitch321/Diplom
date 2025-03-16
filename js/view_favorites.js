@@ -1,26 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    if (!document.querySelector('.player-container')) {
-        // Если нет, загружаем необходимые файлы для плеера
-        loadAudioPlayerFiles();
-    }
-    loadFavorites(); // Загружаем избранные подкасты при загрузке страницы
-});
-function loadAudioPlayerFiles() {
-    // Загружаем HTML, CSS и JavaScript для плеера через PHP
-    fetch('/php/page_templates/audio_player.php')  // Путь к вашему PHP файлу
-        .then(response => response.text())
-        .then(html => {
-            // Вставляем HTML в body
-            const div = document.createElement('div');
-            div.innerHTML = html;
-            document.body.appendChild(div); // Добавляем HTML в body
-        })
-        .catch(error => console.error('Ошибка загрузки PHP для плеера:', error));
-}
-
-// Функция для загрузки избранных подкастов
-function loadFavorites() {
-    fetch('/php/get_favorites.php')  // Укажите правильный путь к вашему PHP файлу
+    fetch('../php/get_favorites.php')  // Укажите правильный путь к вашему PHP файлу
         .then(response => {
             // Проверяем, что ответ от сервера — это JSON
             if (!response.ok) {
@@ -30,8 +9,7 @@ function loadFavorites() {
         })
         .then(data => {
             const podcastsContainer = document.querySelector('.favorites');  // Контейнер для вывода подкастов
-            podcastsContainer.innerHTML = '';  // Очищаем контейнер перед добавлением новых элементов
-            console.log(data);
+
             data.podcasts.forEach(podcast => {
                 const podcastCard = document.createElement('div');
                 podcastCard.classList.add('favorite-podcast-card');
@@ -75,4 +53,4 @@ function loadFavorites() {
             // Выводим ошибку в консоль
             console.error('Ошибка при загрузке подкастов:', error);
         });
-}
+});
