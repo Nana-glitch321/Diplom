@@ -1,4 +1,12 @@
 <?php
+
+header("Access-Control-Allow-Origin: *"); // Разрешаем доступ с других доменов
+header("Content-Type: audio/mpeg");
+header("Content-Disposition: inline; filename=\"audio.mp3\"");
+header("Accept-Ranges: bytes");
+header("Cache-Control: public, max-age=3600"); // Кеширование на 1 час
+header("Connection: keep-alive");
+
 $servername = "localhost";
 $username = "root";
 $password = "";

@@ -84,6 +84,7 @@ $conn->close();
         const userFavorites = <?php echo json_encode($isFavorite); ?>;
     </script>
 
+    <script src="../js/script_custom_audio_player.js"></script>
     <script src="../js/add_favorites.js"></script>
     <script src="../js/script_login_register.js"></script>
     <script src="../js/check_account.js"></script>

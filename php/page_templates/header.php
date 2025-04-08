@@ -7,7 +7,7 @@
     <nav class="header-right navigation" role="navigation" aria-label="Основная навигация">
         <a href="/">Главная</a>
         <a href="/theme">Темы</a>
-        <a href="/channels">Каналы</a>
+        <a href="php/channel.php">Каналы</a>
         <a href="/popular">Популярное</a>
         <?php if ($user_name): ?>
             <button class="btnLogin-popup" id="userGreeting">

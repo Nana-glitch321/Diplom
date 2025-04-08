@@ -21,10 +21,22 @@
             <div class="progress-time">
                 <span class="current-time" id="current-time">00:00</span> / <span class="duration" id="duration">00:00</span>
             </div>
+            <div class="speed-control-container">
+                <button class="control-btn" id="speed-control">
+                    <span id="speed-value">1x</span>
+                </button>
+                <div class="speed-menu">
+                    <div class="speed-option" data-speed="0.5">0.5x</div>
+                    <div class="speed-option" data-speed="1">1x</div>
+                    <div class="speed-option" data-speed="1.25">1.25x</div>
+                    <div class="speed-option" data-speed="1.5">1.5x</div>
+                    <div class="speed-option" data-speed="2">2x</div>
+                </div>
+            </div>  
         </div>
         <button class="add-to-wishlist" data-podcast-id="<?php echo $podcast['id']; ?>" onclick="addToFavorites(this)">
             <i class="far fa-heart"></i>
         </button>
     </div>
-    <script src="../js/script_audio_player.js"></script>
 </body>
+<script src="../js/pop.js"></script>

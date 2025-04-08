@@ -15,7 +15,7 @@ body {
     text-align: center; /* Выравнивание текста */
     display: grid;
     place-items: center;
-    margin-top: 100px;
+    margin-top: 0px;
 }
 
 .player-card {
@@ -30,6 +30,8 @@ body {
     position: relative;
     flex-direction: column;
     align-items: center;
+    margin-top: 10px;
+    bottom: 160px;
 }
 
 .cover-container {
@@ -141,3 +143,35 @@ body {
     margin-top: 8px;
     color: #333;
 }
+
+.genre-title  {
+    margin-top: 90px;
+    margin-bottom: 10px;
+}
+
+.speed-menu {
+    display: none;
+    position: absolute;
+    background: #CFF64B;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.2s ease-in-out;
+    z-index: 10;
+    min-width: 80px;
+    bottom: 20px;
+    right: 40px;
+}
+.speed-menu.active {
+    display: block;
+}
+.speed-option {
+    padding: 5px;
+    cursor: pointer;
+    color: #729238;
+}
+.speed-option:hover {
+    background: #f0f0f0;
+}
+

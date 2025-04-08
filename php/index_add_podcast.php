@@ -26,4 +26,5 @@
         <script src="../js/script_login_register.js"></script>
         <script src="../js/check_account.js"></script>
     </body>
-</html>
+
+    

@@ -1,4 +1,4 @@
-<body>  
+<body>
     <div class="card">
         <div class="profile-pic">
             <!-- Динамическая аватарка из базы -->
@@ -15,14 +15,14 @@
                 </label>
             </form>
         </div>
-         <div class="info-row">
+        <div class="info-row">
             <div class="info short">
                 <button class="control-btn" onclick="window.location.href='../php/index_add_podcast.php'">
                     </i> Добавить подкаст
                 </button>
             </div>
             <div class="info short">
-                <button class="control-btn" onclick="">
+                <button class="control-btn" onclick="window.location.href='../php/delete_podcast.php'">
                     </i> Удалить подкаст
                 </button>
             </div>
@@ -31,7 +31,22 @@
                 </i> Выйти
             </button>
             </div>
-            <div class="info long"></div>
+            <div class="info short">
+                <button class="control-btn" id="donateButton">
+                    Донаты!
+                </button>
+            </div>
+            <div id="donateModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Если хотите поддержать разработчика:</p>
+                    <p><strong>Телефон:</strong> +7 000-000-00-00</p>
+                    <p><strong>Сбер:</strong> 1111 2222 3333 4444</p>
+                    <div class="qr-container">
+                        <img src="../picture/qr.jpg" alt="QR-код для донатов">
+                    </div>
+                </div>
+            </div>            
         </div>
     </div>
     <div class="container">
@@ -62,6 +77,7 @@
         <div class="info-container">
             <div class="author" id="author">Автор подкаста</div>
             <div class="title">Название подкаста</div>
+            <button class="close-player">&times;</button>
             <div class="controls">
                 <button class="control-btn" id="prev">
                     <i class="fas fa-step-backward"></i>
@@ -73,20 +89,48 @@
                     <i class="fas fa-step-forward"></i>
                 </button>
             </div>
-            
+            <div class="speed-control-container">
+                <button class="control-btn" id="speed-control">
+                    <span id="speed-value">1x</span>
+                </button>
+                <div class="speed-menu">
+                    <div class="speed-option" data-speed="0.5">0.5x</div>
+                    <div class="speed-option" data-speed="1">1x</div>
+                    <div class="speed-option" data-speed="1.25">1.25x</div>
+                    <div class="speed-option" data-speed="1.5">1.5x</div>
+                    <div class="speed-option" data-speed="2">2x</div>
+                </div>
+            </div>          
             <audio id="audio-player" preload="metadata"></audio>
             <input type="range" class="progress-bar" id="progress-bar" value="0" max="100" step="1">
             <div class="progress-time">
                 <span class="current-time" id="current-time">00:00</span> / <span class="duration" id="duration">00:00</span>
             </div>
         </div>
-        <button class="add-to-wishlist" data-podcast-id="<?php echo $podcast['id']; ?>" onclick="addToFavorites(this)">
-            <i class="fas fa-heart"></i>
-        </button>
-        <button class="control-btn" onclick="window.location.href='../php/podcasts.php'">
+        <button class="control-btn" onclick="window.location.href='../php/index_pop.php'">
             <i class="fas fa-list"></i> Все подкасты
         </button>
     </div>
 
     <script src="../js/script_audio_player.js"></script>
+    <script src="../js/modal_donate.js"></script>
+
+    <script>
+        // Добавим обработчик кликов на элементы выбора скорости
+        document.querySelectorAll('.speed-option').forEach(function(option) {
+            option.addEventListener('click', function() {
+                const speed = parseFloat(option.getAttribute('data-speed'));
+                document.getElementById('audio-player').playbackRate = speed;
+                document.getElementById('speed-value').innerText = speed + 'x';
+                document.querySelector('.speed-menu').style.display = 'none'; // скрываем меню
+            });
+        });
+
+        // Обработчик для кнопки скорости (открывает меню)
+        document.getElementById('speed-control').addEventListener('click', function() {
+            const menu = document.querySelector('.speed-menu');
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        });
+    </script>
+
 </body>

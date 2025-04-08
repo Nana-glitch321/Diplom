@@ -55,7 +55,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: #04456b;
+    background: #191970;
     border-radius: 12px 12px 0 0;
     padding: 20px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -107,13 +107,16 @@
 }
 
 .author {
+    position: relative;
     font-size: 14px;
     font-weight: 500;
     color: #FEFAE0;
     opacity: 0.8;
+    top: 45px;
 }
 
 .title {
+    position: relative;
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 8px;
@@ -121,12 +124,15 @@
     overflow: hidden;
     text-overflow: ellipsis;
     color: #CFF64B;
+    top: 50px;
     -webkit-text-stroke: 0.5px #729238;
 }
 
 .controls {
     align-items: center;
     gap: 12px;
+    position: relative;
+    top: 50px; /* Удалите предыдущий большой отступ */
 }
 
 .control-btn {
@@ -191,4 +197,420 @@
     font-size: 14px;
     margin-top: 8px;
     color: #CFF64B;
+}
+
+/* Подключение шрифта */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Сохраняем вертикальное расположение элементов */
+    justify-content: center; /* Центрируем по вертикали */
+    align-items: center; /* Центрируем по горизонтали */
+    min-height: 100vh; /* Высота экрана */
+    background-color: #729238; /* Зеленый фон */
+    color: #F8F6DA;
+    padding: 20px; /* Отступы по бокам */
+    text-align: center; /* Выравнивание текста */
+}
+
+/* Шапка сайта */
+header {
+    position: fixed; /* Фиксированное позиционирование */
+    top: 0; /* Верхний отступ */
+    left: 0; /* Левый отступ */
+    width: 100%; /* Ширина на всю страницу */
+    padding: 0 100px; /* Отступы по бокам */
+    height: 100px; /* Высота шапки */
+    background: #F8F6DA; /* Цвет фона */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для шапки */
+    display: flex; /* Используем Flexbox для расположения элементов */
+    justify-content: space-between; /* Разделяем элементы с отступами */
+    align-items: center; /* Центрируем по вертикали */
+    z-index: 99; /* Устанавливаем высокий приоритет отображения */
+}
+
+.logo {
+    display: flex; /* Flexbox для логотипа */
+    align-items: center; /* Центрируем логотип по вертикали */
+    height: 100%; /* Высота логотипа — 100% от родителя */
+}
+
+.logo img {
+    max-height: 140px; /* Максимальная высота изображения */
+    width: auto; /* Пропорциональная ширина */
+}
+
+.navigation {
+    display: flex; /* Flexbox для навигации */
+    align-items: center; /* Центрируем элементы навигации по вертикали */
+}
+
+.navigation a {
+    font-size: 1.6em; /* Размер шрифта */
+    color: #729238; /* Цвет ссылок */
+    text-decoration: none; /* Убираем подчеркивание у ссылок */
+    font-weight: 800; /* Полужирный шрифт */
+    margin-left: 40px; /* Отступ слева между ссылками */
+    position: relative; /* Для псевдоэлементов */
+    white-space: nowrap; /* Запрещаем перенос текста */
+    transition: color 0.3s; /* Плавный переход для изменения цвета */
+}
+
+.navigation a::after {
+    content: ""; /* Псевдоэлемент */
+    position: absolute; /* Абсолютное позиционирование */
+    left: 0; /* Сдвиг влево */
+    bottom: -6px; /* Сдвиг вниз */
+    width: 100%; /* Ширина полоски */
+    height: 3px; /* Высота полоски */
+    background: #CFF64B; /* Цвет полоски */
+    border-radius: 5px; /* Скругленные углы полоски */
+    transform-origin: right; /* Начало трансформации справа */
+    transform: scaleX(0); /* Изначально скрытая полоска */
+    transition: transform 0.3s; /* Плавный переход для анимации полоски */
+}
+
+.navigation a:hover::after {
+    transform-origin: left; /* Меняем начало трансформации на левое при наведении */
+    transform: scaleX(1); /* Полоска появляется */
+}
+
+.navigation .btnLogin-popup {
+    margin-left: 40px; /* Отступ между кнопками */
+    padding: 15px 25px; /* Отступы внутри кнопки */
+    border: 2px solid #729238; /* Цвет и толщина рамки */
+    background: transparent; /* Прозрачный фон */
+    border-radius: 6px; /* Скругленные углы */
+    color: #729238; /* Цвет текста */
+    font-size: 1.5em; /* Размер шрифта */
+    font-weight: 800; /* Полужирный шрифт */
+    cursor: pointer; /* Курсор в виде руки */
+    transition: background 0.3s, color 0.3s; /* Плавные переходы */
+}
+
+.navigation .btnLogin-popup:hover {
+    background: #CFF64B; /* Цвет фона при наведении */
+    color: #F8F6DA; /* Цвет текста при наведении */
+}
+
+.card {
+    width: 100%;
+    max-width: 350px;
+    min-height: 500px;
+    background-color: #F8F6DA;
+    border-radius: 70px;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 70px;
+    transform: translateY(-40%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-pic {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #CFF64B;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #729238;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4em;
+    color: #F8F6DA;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.upload-label {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #CFF64B;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.upload-label:hover {
+    transform: scale(1.1);
+    background: #A5D152;
+}
+
+#avatar-input {
+    display: none;
+}
+
+.info-row {
+    display: flex;
+    flex-wrap: wrap; /* Элементы могут переноситься на новые строки */
+    gap: 10px; /* Отступ между элементами */
+    width: 100%; /* Ширина контейнера — 100% от карточки */
+}
+
+.info {
+    width: calc(50% - 10px); /* Каждый элемент будет занимать 50% ширины контейнера, учитывая отступ */
+    padding: 10px;
+    box-sizing: border-box; /* Учитываем padding в ширине */
+    margin-top: 50px;
+}
+
+.short {
+    background-color: #729238;
+    border-radius: 70px;
+    font-size: 1.5rem;
+    padding: 20px;
+    text-align: center;
+}
+
+.long {
+    background-color: #729238;
+    border-radius: 70px;
+    font-size: 2rem;
+    padding: 30px;
+    text-align: center;
+}
+
+.content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vh;
+}
+
+.top-button {
+    width: 100px;
+    height: 30px;
+    background-color: #788F3E;
+    border-radius: 5px;
+}
+
+.cards {
+    display: flex;
+    gap: 40px;
+    margin-left: 400px;
+}
+
+.card1 {
+    width: 450px;
+    height: 400px;
+    background-color: #F8F6DA;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column; /* Размещаем элементы по вертикали */
+    align-items: center; /* Центрируем элементы по горизонтали */
+    justify-content: flex-start; /* Позиционируем элементы сверху */
+    padding: 20px; /* Отступы внутри карточки */
+    position: relative; /* Устанавливаем относительное позиционирование */
+}
+
+.text {
+    color: #5E772A;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px; /* Отступ снизу для текста */
+}
+
+.favorites {
+    display: flex;
+    width: 90%;  /* Карточка будет растягиваться по ширине родительского контейнера */
+    flex-direction: column; /* Размещаем элементы вертикально */
+    gap: 20px; /* Расстояние между подкастами */
+    margin-top: 10px; /* Отступ сверху */
+    flex-grow: 1; /* Растягиваем на оставшееся пространство */
+    justify-content: flex-start; /* Выравнивание по верхнему краю */
+    overflow-y: auto; /* Добавляем прокрутку, если элементов слишком много */
+}
+
+.favorite-podcast-card {
+    margin: 15px;
+    width: 90%;  /* Карточка будет растягиваться по ширине родительского контейнера */
+    height: 80px; /* Задаём высоту карточки */
+    background-color: #F8F6DA;
+    border-radius: 20px;
+    display: flex; /* Используем flex для размещения изображения и текста */
+    align-items: center; /* Выравниваем элементы по центру вертикально */
+    padding: 10px; /* Добавляем отступы */
+    transition: background-color 0.3s, transform 0.1s; /* Плавный переход для фона и трансформации */
+    cursor: pointer; /* Указатель в виде руки при наведении */
+}
+
+/* Эффект при наведении на карточку */
+.favorite-podcast-card:hover {
+    background-color: #F8F6DA; /* Меняем фон при наведении */
+    transform: scale(1.05); /* Легкое увеличение карточки */
+}
+
+/* Эффект при нажатии на карточку */
+.favorite-podcast-card:active {
+    background-color: #F8F6DA; /* Еще более темный фон при нажатии */
+    transform: scale(0.98); /* Легкое уменьшение карточки */
+}
+
+
+.favorite-podcast-card .cover {
+    width: 70px;  /* Устанавливаем фиксированную ширину для изображения */
+    height: 70px; /* Высота изображения */
+    border-radius: 10px; /* Скругляем углы */
+    margin-right: 15px; /* Отступ справа от изображения */
+}
+
+.favorite-podcast-card .favorite-podcast-title {
+    flex-grow: 1; /* Текст растягивается на оставшееся пространство */
+    font-size: 16px; /* Размер шрифта для заголовка */
+    font-weight: bold;
+    text-align: center; /* Выравнивание текста слева */
+    color: #5E772A; /* Цвет текста */
+}
+
+/* Стиль для контейнера */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Центрируем элементы по горизонтали */
+    gap: 40px;
+    width: 100%;
+    margin-top: 100px;
+    padding: 0 10px;  /* Добавим небольшой отступ слева и справа */
+}
+
+/* Стиль для топ-бара с заголовком */
+.top-bar {
+    width: 100%;  /* Устанавливаем 100% ширины относительно контейнера */
+    max-width: 800px;  /* Максимальная ширина для больших экранов */
+    height: auto;  /* Автоматическая высота */
+    background-color: #F8F6DA;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;  /* Элементы внутри идут вертикально */
+    justify-content: center;
+    align-items: center;  /* Центрируем контент по горизонтали */
+    margin: 20px 0;  /* Центрируем сам контейнер и даем отступ сверху и снизу */
+    text-align: center;  /* Центрируем текст внутри */
+    box-sizing: border-box;  /* Учитываем padding в размере */
+    margin-left: 400px; /* ЖЕСТКИЙ КОСТЫЛЬ - МЕНЯТЬ */
+}
+
+/* Стиль для секции любимых жанров */
+.favorite-genres {
+    display: flex;
+    flex-wrap: wrap;  /* Чтобы элементы переходили на следующую строку, если не помещаются */
+    gap: 15px;  /* Отступ между элементами */
+    margin-top: 20px;
+    justify-content: flex-start; /* Выравнивание элементов по началу (слева) */
+    width: 100%;  /* Контейнер занимает всю доступную ширину */
+    box-sizing: border-box;  /* Учитываем отступы и padding в размере */
+}
+
+/* Стиль для каждого элемента жанра */
+.genre-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #CFF64B;
+    padding: 5px;
+    border-radius: 5px;
+    transition: transform 0.3s;
+    white-space: nowrap;  /* Чтобы текст не переносился */
+    width: auto;  /* Ограничим ширину элемента */
+    box-sizing: border-box;  /* Учитываем padding */
+    margin-bottom: 5px;  /* Отступ снизу */
+}
+
+.genre-item:hover {
+    transform: scale(1.05);
+}
+
+/* Стиль для иконки жанра */
+.genre-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Стиль для названия жанра */
+.genre-name {
+    font-size: 14px;
+    color: #333;
+    white-space: nowrap;  /* Чтобы текст не переносился */
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #CFF64B;
+    color: #5E772A;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    margin-top: 110px;
+}
+
+.qr-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.qr-container img {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
 }

@@ -14,7 +14,7 @@ body {
     align-items: center; /* Центрируем по горизонтали */
     min-height: 100vh; /* Высота экрана */
     background-color: #729238; /* Зеленый фон */
-    color: #FEFAE0;;
+    color: #F8F6DA;
     padding: 20px; /* Отступы по бокам */
     text-align: center; /* Выравнивание текста */
 }
@@ -27,7 +27,7 @@ header {
     width: 100%; /* Ширина на всю страницу */
     padding: 0 100px; /* Отступы по бокам */
     height: 100px; /* Высота шапки */
-    background: #FEFAE0; /* Цвет фона */
+    background: #F8F6DA; /* Цвет фона */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для шапки */
     display: flex; /* Используем Flexbox для расположения элементов */
     justify-content: space-between; /* Разделяем элементы с отступами */
@@ -96,14 +96,14 @@ header {
 
 .navigation .btnLogin-popup:hover {
     background: #CFF64B; /* Цвет фона при наведении */
-    color: #FEFAE0; /* Цвет текста при наведении */
+    color: #F8F6DA; /* Цвет текста при наведении */
 }
 
 .card {
     width: 100%;
     max-width: 350px;
     min-height: 500px;
-    background-color: #FEFAE0;
+    background-color: #F8F6DA;
     border-radius: 70px;
     padding: 20px;
     position: fixed;
@@ -144,7 +144,7 @@ header {
     align-items: center;
     justify-content: center;
     font-size: 4em;
-    color: #FEFAE0;
+    color: #F8F6DA;
     font-weight: 700;
     text-transform: uppercase;
 }
@@ -270,13 +270,13 @@ header {
 
 /* Эффект при наведении на карточку */
 .favorite-podcast-card:hover {
-    background-color: #D8D6C4; /* Меняем фон при наведении */
+    background-color: #F8F6DA; /* Меняем фон при наведении */
     transform: scale(1.05); /* Легкое увеличение карточки */
 }
 
 /* Эффект при нажатии на карточку */
 .favorite-podcast-card:active {
-    background-color: #C4C1A4; /* Еще более темный фон при нажатии */
+    background-color: #F8F6DA; /* Еще более темный фон при нажатии */
     transform: scale(0.98); /* Легкое уменьшение карточки */
 }
 
@@ -294,201 +294,6 @@ header {
     font-weight: bold;
     text-align: center; /* Выравнивание текста слева */
     color: #5E772A; /* Цвет текста */
-}
-
-/* Плейер скрыт по умолчанию */
-.player {
-    position: fixed;
-    bottom: -100%; /* Скрыт за пределами экрана */
-    left: 0;
-    width: 100%;
-    height: 200px; /* Высота плейера */
-    background-color: #F8F6DA;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    transition: bottom 0.5s ease-in-out; /* Плавное появление снизу */
-    z-index: 100; /* Плейер будет поверх остальных элементов */
-}
-
-.player-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.player-header {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    font-size: 18px;
-    font-weight: bold;
-    color: #5E772A;
-    margin-bottom: 10px;
-}
-
-.player button {
-    background-color: #729238;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.player button:hover {
-    background-color: #5E772A;
-}
-
-/* Появление плейера */
-.player.show {
-    bottom: 0; /* Плейер появляется снизу */
-}
-
-.player-container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #04456b;
-    border-radius: 12px 12px 0 0;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    display: flex;
-    gap: 15px;
-    flex-direction: row;
-    align-items: center;
-    z-index: 1000;
-    visibility: hidden; /* Плеер скрыт */
-    opacity: 0; /* Плеер невидим */
-    transition: visibility 0s 0.3s, opacity 0.3s linear;
-}
-
-.player-container.show {
-    visibility: visible; /* Показываем плеер */
-    opacity: 1; /* Делаем плеер видимым */
-    transition: visibility 0s, opacity 0.3s linear;
-}
-
-.cover-container {
-    position: relative;
-    width: 80px;  /* Ширина изображения */
-    height: 80px; /* Высота изображения */
-}
-
-.cover {
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    object-fit: cover;
-    animation: rotate 20s linear infinite;
-    animation-play-state: paused;
-}
-
-.player-card.playing .cover {
-    animation-play-state: running;
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-.info-container {
-    flex: 1;
-    min-width: 0;
-    width: 100%;
-    text-align: left; /* Текст выравнивается слева */
-}
-
-.author {
-    font-size: 14px;
-    font-weight: 500;
-    color: #FEFAE0;
-    opacity: 0.8;
-}
-
-.title {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #CFF64B;
-    -webkit-text-stroke: 0.5px #729238;
-}
-
-.controls {
-    align-items: center;
-    gap: 12px;
-}
-
-.control-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #FEFAE0;
-    font-size: 18px;
-    transition: color 0.2s;
-}
-
-.control-btn:hover {
-    color: #CFF64B;
-}
-
-.add-to-wishlist {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(255,255,255,0.9);
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.add-to-wishlist:hover {
-    color: #e74c3c;
-}
-
-/* Прогресс бар */
-.progress-bar {
-    width: 100%;
-    margin-top: 12px;
-    background-color: #ddd;
-    border-radius: 10px;
-    height: 5px;
-    -webkit-appearance: none;
-}
-
-.progress-bar::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    background-color: #729238;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.progress-bar::-webkit-slider-runnable-track {
-    background-color: #ddd;
-    border-radius: 10px;
-}
-
-/* Время прогресса */
-.progress-time {
-    font-size: 14px;
-    margin-top: 8px;
-    color: #CFF64B;
 }
 
 /* Стиль для контейнера */
@@ -517,7 +322,6 @@ header {
     margin: 20px 0;  /* Центрируем сам контейнер и даем отступ сверху и снизу */
     text-align: center;  /* Центрируем текст внутри */
     box-sizing: border-box;  /* Учитываем padding в размере */
-    margin-left: 400px; /* ЖЕСТКИЙ КОСТЫЛЬ - МЕНЯТЬ */
 }
 
 /* Стиль для секции любимых жанров */
@@ -536,7 +340,7 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
-    background-color: #f1f1f1;
+    background-color: #CFF64B;
     padding: 5px;
     border-radius: 5px;
     transition: transform 0.3s;
@@ -564,3 +368,158 @@ header {
     color: #333;
     white-space: nowrap;  /* Чтобы текст не переносился */
 }
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #CFF64B;
+    color: #5E772A;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    margin-top: 110px;
+}
+
+.qr-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.qr-container img {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Контейнер с управлением скорости */
+.speed-control-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 1px;
+}
+
+#speed-control {
+    background-color: #CFF64B;
+    color: #5E772A;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    left: 1100px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#speed-control:hover {
+    background-color: #A5D152;
+    transform: scale(1.1);
+}
+
+#speed-value {
+    margin-left: 10px;
+}
+
+/* Меню выбора скорости */
+.speed-menu {
+    display: none;
+    position: absolute;
+    top: -95px; /* Поднимем меню немного вверх */
+    left: 1120px; /* Сдвинем меню вправо */
+    background-color: #F8F6DA;
+    border-radius: 10px;
+    color: #5E772A;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 120px;
+    margin-top: 10px;
+    z-index: 10;
+}
+
+
+.speed-option {
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 1rem;
+    border-radius: 8px;
+}
+
+.speed-option:hover {
+    background-color: #A5D152;
+    transform: scale(1.05);
+}
+
+.speed-option:active {
+    background-color: #A5D152;
+    transform: scale(0.98);
+}
+
+.speed-option.selected {
+    background-color: #CFF64B;
+    font-weight: bold;
+}
+
+/* Плавная анимация для появления/исчезания меню */
+.speed-menu.show {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#speedButton {
+    margin-left: 20px; /* Дополнительный отступ */
+}
+
+.close-player {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #FEFAE0;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 1001;
+}
+
+.close-player:hover {
+    color: #CFF64B;
+}
+

@@ -98,3 +98,58 @@ navigation .btnLogin-popup {
     background: #CFF64B; /* Цвет фона при наведении */
     color: #FEFAE0; /* Цвет текста при наведении */
 }
+
+.user-card {
+    width: 180px;
+    background: #FEFAE0;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    text-align: center;
+}
+
+.user-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-card h3 {
+    margin: 10px 0;
+    font-size: 16px;    
+    margin-top: 50px;
+
+}
+
+.favorite-btn, .view-profile {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.favorite-btn {
+    background: #ffcc00;
+    color: black;
+}
+
+.favorite-btn:disabled {
+    background: #ccc;
+}
+
+.view-profile {
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+.view-profile:hover {
+    background: #0056b3;
+}

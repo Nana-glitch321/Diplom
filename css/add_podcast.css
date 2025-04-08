@@ -18,7 +18,6 @@ body {
     padding: 20px; /* Отступы по бокам */
     text-align: center; /* Выравнивание текста */
 }
-
 /* Шапка сайта */
 header {
     position: fixed; /* Фиксированное позиционирование */
@@ -32,7 +31,7 @@ header {
     display: flex; /* Используем Flexbox для расположения элементов */
     justify-content: space-between; /* Разделяем элементы с отступами */
     align-items: center; /* Центрируем по вертикали */
-    z-index: 99; /* Устанавливаем высокий приоритет отображения */
+    z-index: 1001; /* Устанавливаем высокий приоритет отображения */
 }
 
 .logo {
@@ -52,7 +51,7 @@ header {
 }
 
 .navigation a {
-    font-size: 1.2em; /* Размер шрифта */
+    font-size: 1.6em; /* Размер шрифта */
     color: #729238; /* Цвет ссылок */
     text-decoration: none; /* Убираем подчеркивание у ссылок */
     font-weight: 800; /* Полужирный шрифт */
@@ -60,6 +59,43 @@ header {
     position: relative; /* Для псевдоэлементов */
     white-space: nowrap; /* Запрещаем перенос текста */
     transition: color 0.3s; /* Плавный переход для изменения цвета */
+}
+
+.navigation a::after {
+    content: ""; /* Псевдоэлемент */
+    position: absolute; /* Абсолютное позиционирование */
+    left: 0; /* Сдвиг влево */
+    bottom: -6px; /* Сдвиг вниз */
+    width: 100%; /* Ширина полоски */
+    height: 3px; /* Высота полоски */
+    background: #CFF64B; /* Цвет полоски */
+    border-radius: 5px; /* Скругленные углы полоски */
+    transform-origin: right; /* Начало трансформации справа */
+    transform: scaleX(0); /* Изначально скрытая полоска */
+    transition: transform 0.3s; /* Плавный переход для анимации полоски */
+}
+
+.navigation a:hover::after {
+    transform-origin: left; /* Меняем начало трансформации на левое при наведении */
+    transform: scaleX(1); /* Полоска появляется */
+}
+
+.navigation .btnLogin-popup {
+    margin-left: 40px; /* Отступ между кнопками */
+    padding: 15px 25px; /* Отступы внутри кнопки */
+    border: 2px solid #729238; /* Цвет и толщина рамки */
+    background: transparent; /* Прозрачный фон */
+    border-radius: 6px; /* Скругленные углы */
+    color: #729238; /* Цвет текста */
+    font-size: 1.5em; /* Размер шрифта */
+    font-weight: 800; /* Полужирный шрифт */
+    cursor: pointer; /* Курсор в виде руки */
+    transition: background 0.3s, color 0.3s; /* Плавные переходы */
+}
+
+.navigation .btnLogin-popup:hover {
+    background: #CFF64B; /* Цвет фона при наведении */
+    color: #FEFAE0; /* Цвет текста при наведении */
 }
 
 .card {
